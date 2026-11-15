@@ -55,7 +55,7 @@ export default async function AboutPage() {
         </div>
       </Section>
 
-      <Section labelledBy="cap-heading" className="border-y border-white/[0.05] bg-surface/30">
+      <Section labelledBy="cap-heading" className="border-y border-ink/[0.05] bg-surface/30">
         <SectionHeading id="cap-heading" eyebrow="Technical capabilities" title="Three disciplines, deeply integrated" />
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {serviceCategories.map((c, i) => (
@@ -89,7 +89,7 @@ export default async function AboutPage() {
         </ol>
       </Section>
 
-      <Section labelledBy="commit-heading" className="border-y border-white/[0.05] bg-surface/30">
+      <Section labelledBy="commit-heading" className="border-y border-ink/[0.05] bg-surface/30">
         <SectionHeading id="commit-heading" eyebrow="Our commitment" title="Practical AI, implemented responsibly" />
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {commitments.map((c, i) => (

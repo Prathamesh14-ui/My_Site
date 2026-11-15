@@ -90,7 +90,7 @@ async function ServiceCategoryPageContent({ params }: Pick<PageProps<"/services/
         />
       </Section>
 
-      <Section labelledBy="services-heading" className="border-y border-white/[0.05] bg-surface/30">
+      <Section labelledBy="services-heading" className="border-y border-ink/[0.05] bg-surface/30">
         <SectionHeading id="services-heading" eyebrow="Services" title={`${cat.shortTitle} services`} description="Each service starts from a business problem and ends with a working system." />
         <div className="mt-12">
           <SubServiceGrid category={cat} />
@@ -123,7 +123,7 @@ async function ServiceCategoryPageContent({ params }: Pick<PageProps<"/services/
         </Section>
       )}
 
-      <Section labelledBy="uses-heading" className="border-y border-white/[0.05] bg-surface/30">
+      <Section labelledBy="uses-heading" className="border-y border-ink/[0.05] bg-surface/30">
         <SectionHeading id="uses-heading" eyebrow="Real-world use cases" title="Where this makes a difference" />
         <div className="mt-12">
           <UseCases items={cat.useCases} />

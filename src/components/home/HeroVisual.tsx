@@ -17,11 +17,11 @@ const center = { x: 230, y: 170 };
 const events = [
   { tag: "IN", text: "WhatsApp: “Can I book Thursday at 5:30?”", tone: "text-secondary-bright" },
   { tag: "AI", text: "Intent detected → book_appointment", tone: "text-primary-bright" },
-  { tag: "API", text: "Calendar: 5:30 PM slot is free", tone: "text-emerald-300" },
-  { tag: "OK", text: "Booked · confirmation sent", tone: "text-emerald-300" },
+  { tag: "API", text: "Calendar: 5:30 PM slot is free", tone: "text-success" },
+  { tag: "OK", text: "Booked · confirmation sent", tone: "text-success" },
   { tag: "IN", text: "Website: “Do you build Next.js sites?”", tone: "text-secondary-bright" },
   { tag: "AI", text: "Answered from knowledge base", tone: "text-primary-bright" },
-  { tag: "CRM", text: "Lead created and assigned", tone: "text-emerald-300" },
+  { tag: "CRM", text: "Lead created and assigned", tone: "text-success" },
 ];
 
 function pathFor(n: { x: number; y: number }) {
@@ -44,18 +44,18 @@ export function HeroVisual() {
   return (
     <div className="relative" aria-hidden="true">
       <div className="absolute -inset-10 glow-primary opacity-60 blur-2xl" />
-      <div className="glass relative overflow-hidden rounded-3xl shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)]">
-        <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-3">
+      <div data-theme="dark" className="glass relative overflow-hidden rounded-3xl shadow-[0_40px_120px_-30px_var(--shadow-strong)]">
+        <div className="flex items-center justify-between border-b border-ink/[0.06] px-4 py-3">
           <div className="flex items-center gap-2">
             <span className="flex gap-1.5">
-              <span className="size-2.5 rounded-full bg-white/15" />
-              <span className="size-2.5 rounded-full bg-white/15" />
-              <span className="size-2.5 rounded-full bg-white/15" />
+              <span className="size-2.5 rounded-full bg-ink/15" />
+              <span className="size-2.5 rounded-full bg-ink/15" />
+              <span className="size-2.5 rounded-full bg-ink/15" />
             </span>
             <span className="ml-2 font-mono text-[11px] text-muted">agent-console</span>
           </div>
           <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-muted">
-            <span className="size-1.5 animate-pulse-soft rounded-full bg-emerald-400" /> Illustration
+            <span className="size-1.5 animate-pulse-soft rounded-full bg-success" /> Illustration
           </span>
         </div>
 
@@ -108,7 +108,7 @@ export function HeroVisual() {
           </foreignObject>
         </svg>
 
-        <div className="border-t border-white/[0.06] px-4 py-3">
+        <div className="border-t border-ink/[0.06] px-4 py-3">
           <ul className="relative h-[84px] overflow-hidden font-mono text-[11px]">
             <AnimatePresence initial={false} mode="popLayout">
               {visible.map((e, i) => (
@@ -121,7 +121,7 @@ export function HeroVisual() {
                   transition={{ duration: 0.45 }}
                   className="flex h-7 items-center gap-2.5"
                 >
-                  <span className={`w-9 shrink-0 rounded bg-white/[0.05] px-1 text-center text-[9.5px] ${e.tone}`}>{e.tag}</span>
+                  <span className={`w-9 shrink-0 rounded bg-ink/[0.05] px-1 text-center text-[9.5px] ${e.tone}`}>{e.tag}</span>
                   <span className="truncate text-fg/80">{e.text}</span>
                 </motion.li>
               ))}

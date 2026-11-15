@@ -37,6 +37,17 @@ Before launch, replace the values marked `PLACEHOLDER`:
 | Process, technologies, nav | `src/content/general.ts` |
 | Estimator pricing | `src/config/pricing.ts` |
 
+## Light & dark theme
+
+Dark is the default. Visitors can switch **Light / Dark / System** from the header (or the mobile menu); the choice is
+remembered per browser, and an inline script applies it before the page paints (no flash).
+
+- **Colours for both themes** live in `src/config/site.ts` (`colors` = dark, `colors.light` = light).
+  Change `defaultTheme` to `"light"` or `"system"` to change what first-time visitors see.
+- When building new UI, use the theme tokens (`bg-bg`, `bg-surface`, `text-fg`, `text-muted`, `border-line`,
+  `bg-ink/10` for subtle tints, `text-success` / `text-warning` / `text-danger`) — not `white/…` or fixed colours.
+- Add `data-theme="dark"` to an element to keep it dark inside a light page (used for the product illustrations).
+
 ## Content management (Sanity CMS)
 
 Case studies, services (all three areas and every service page) and FAQs can be edited in **Sanity Studio**,

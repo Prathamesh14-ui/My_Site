@@ -8,6 +8,7 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import { navigation } from "@/content/general";
 import { siteConfig, whatsappLink } from "@/config/site";
 import { Logo } from "./Logo";
+import { ThemeToggle } from "./ThemeToggle";
 import { ButtonLink } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
@@ -57,7 +58,7 @@ export function Header() {
       <div
         className={cn(
           "transition-all duration-300",
-          scrolled || open ? "border-b border-white/[0.06] bg-bg/75 backdrop-blur-xl" : "border-b border-transparent",
+          scrolled || open ? "border-b border-ink/[0.06] bg-bg/75 backdrop-blur-xl" : "border-b border-transparent",
         )}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -76,7 +77,7 @@ export function Header() {
                 )}
               >
                 {isActive(item.href) && (
-                  <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-full bg-white/[0.06]" transition={{ type: "spring", bounce: 0.2, duration: 0.5 }} />
+                  <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-full bg-ink/[0.06]" transition={{ type: "spring", bounce: 0.2, duration: 0.5 }} />
                 )}
                 <span className="relative">{item.label}</span>
               </Link>
@@ -84,8 +85,9 @@ export function Header() {
             </ActivePath>
           </nav>
 
-          <div className="hidden lg:block">
-            <ButtonLink href={siteConfig.cta.primary.href} size="md" className="h-10 px-4">
+          <div className="hidden items-center gap-3 md:flex">
+            <ThemeToggle compact />
+            <ButtonLink href={siteConfig.cta.primary.href} size="md" className="hidden h-10 px-4 lg:inline-flex">
               {siteConfig.cta.primary.label}
             </ButtonLink>
           </div>
@@ -127,7 +129,7 @@ export function Header() {
                       href={item.href}
                       onClick={() => setOpen(false)}
                       aria-current={isActive(item.href) ? "page" : undefined}
-                      className="flex items-center justify-between border-b border-white/[0.06] py-5 text-2xl font-medium tracking-tight"
+                      className="flex items-center justify-between border-b border-ink/[0.06] py-5 text-2xl font-medium tracking-tight"
                     >
                       <span className={isActive(item.href) ? "text-gradient" : "text-fg"}>{item.label}</span>
                       <ArrowRight className="size-5 text-muted" aria-hidden="true" />
@@ -137,6 +139,8 @@ export function Header() {
                 </ActivePath>
               </ul>
               <div className="mt-auto flex flex-col gap-3 pt-10">
+                <p className="text-xs uppercase tracking-[0.16em] text-muted">Appearance</p>
+                <ThemeToggle className="mb-3 w-full" />
                 <ButtonLink href={siteConfig.cta.primary.href} size="lg" arrow onClick={() => setOpen(false)}>
                   {siteConfig.cta.primary.label}
                 </ButtonLink>

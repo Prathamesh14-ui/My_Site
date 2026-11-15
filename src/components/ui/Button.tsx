@@ -13,7 +13,7 @@ const variants: Record<Variant, string> = {
   primary:
     "text-white bg-[linear-gradient(110deg,var(--brand-primary),color-mix(in_oklab,var(--brand-primary)_55%,var(--brand-secondary)))] shadow-[0_0_0_1px_color-mix(in_oklab,white_14%,transparent)_inset,0_8px_30px_-8px_color-mix(in_oklab,var(--brand-primary)_70%,transparent)] hover:shadow-[0_0_0_1px_color-mix(in_oklab,white_22%,transparent)_inset,0_12px_40px_-8px_color-mix(in_oklab,var(--brand-primary)_90%,transparent)] hover:-translate-y-0.5",
   secondary:
-    "text-fg bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] hover:border-white/20",
+    "text-fg bg-ink/[0.04] border border-ink/10 hover:bg-ink/[0.08] hover:border-ink/20",
   ghost: "text-fg/80 hover:text-fg",
 };
 

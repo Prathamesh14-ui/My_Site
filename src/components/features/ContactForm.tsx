@@ -101,7 +101,7 @@ export function ContactForm({ serviceOptions }: { serviceOptions: string[] }) {
         animate={{ opacity: 1, y: 0 }}
         className="card flex flex-col items-center px-6 py-16 text-center outline-none"
       >
-        <span className="grid size-14 place-items-center rounded-full bg-emerald-400/15 text-emerald-300">
+        <span className="grid size-14 place-items-center rounded-full bg-success/15 text-success">
           <CircleCheck className="size-7" aria-hidden="true" />
         </span>
         <h2 className="mt-6 text-2xl font-semibold text-fg">Thank you — your enquiry has been sent.</h2>
@@ -187,7 +187,7 @@ export function ContactForm({ serviceOptions }: { serviceOptions: string[] }) {
             <Link href="/privacy" className="text-primary-bright underline-offset-4 hover:underline">privacy notice</Link>.
           </span>
         </label>
-        {errors.consent && <p id="consent-error" className="mt-2 text-sm text-red-300">{errors.consent}</p>}
+        {errors.consent && <p id="consent-error" className="mt-2 text-sm text-danger">{errors.consent}</p>}
       </div>
 
       <AnimatePresence>
@@ -199,7 +199,7 @@ export function ContactForm({ serviceOptions }: { serviceOptions: string[] }) {
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="rounded-xl border border-red-400/30 bg-red-500/10 p-4 text-sm text-red-200 outline-none"
+            className="rounded-xl border border-danger/30 bg-danger/10 p-4 text-sm text-danger outline-none"
           >
             <p className="flex items-start gap-2.5">
               <CircleX className="mt-0.5 size-4 shrink-0" aria-hidden="true" /> {status.message}
@@ -265,7 +265,7 @@ function Field({
         </p>
       )}
       {error && (
-        <p id={`${name}-error`} className="mt-1.5 text-sm text-red-300">
+        <p id={`${name}-error`} className="mt-1.5 text-sm text-danger">
           {error}
         </p>
       )}

@@ -6,7 +6,7 @@ export function MockupLabel({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border border-amber-300/20 bg-amber-300/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-amber-200/90",
+        "inline-flex items-center gap-1.5 rounded-full border border-warning/30 bg-[color-mix(in_oklab,var(--tone-warning)_12%,var(--brand-surface))] px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-warning",
         className,
       )}
     >
@@ -47,15 +47,16 @@ export function PhoneChatMockup({ kind, className }: { kind: "whatsapp-clinic" |
   return (
     <div
       role="img"
+      data-theme="dark"
       aria-label={`Illustrative mockup of a WhatsApp conversation with the ${convo.title}`}
-      className={cn("relative mx-auto w-full max-w-[300px] rounded-[2.2rem] border border-white/10 bg-[#0c0d12] p-2.5 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]", className)}
+      className={cn("relative mx-auto w-full max-w-[300px] rounded-[2.2rem] border border-ink/10 bg-[#0c0d12] p-2.5 shadow-[0_30px_80px_-20px_var(--shadow-strong)]", className)}
     >
-      <div className="overflow-hidden rounded-[1.8rem] border border-white/[0.06] bg-surface">
-        <div className="flex items-center gap-3 border-b border-white/[0.06] bg-raised px-4 pb-3 pt-5">
+      <div className="overflow-hidden rounded-[1.8rem] border border-ink/[0.06] bg-surface">
+        <div className="flex items-center gap-3 border-b border-ink/[0.06] bg-raised px-4 pb-3 pt-5">
           <span className="grid size-9 place-items-center rounded-full bg-[linear-gradient(135deg,var(--brand-primary),var(--brand-secondary))] text-xs font-semibold text-white">AI</span>
           <div className="min-w-0">
             <p className="truncate text-sm font-medium text-fg">{convo.title}</p>
-            <p className="text-[11px] text-emerald-400/90">{convo.subtitle}</p>
+            <p className="text-[11px] text-success/90">{convo.subtitle}</p>
           </div>
         </div>
         <div className="space-y-2.5 px-3 py-4 text-[12.5px] leading-snug" aria-hidden="true">
@@ -64,7 +65,7 @@ export function PhoneChatMockup({ kind, className }: { kind: "whatsapp-clinic" |
               <div
                 className={cn(
                   "max-w-[82%] rounded-2xl px-3 py-2",
-                  m.from === "user" ? "rounded-br-md bg-primary/80 text-white" : "rounded-bl-md border border-white/[0.06] bg-raised text-fg/90",
+                  m.from === "user" ? "rounded-br-md bg-primary/80 text-white" : "rounded-bl-md border border-ink/[0.06] bg-raised text-fg/90",
                 )}
               >
                 {m.text}
@@ -86,14 +87,15 @@ export function BrowserMockup({ className }: { className?: string }) {
   return (
     <div
       role="img"
+      data-theme="dark"
       aria-label="Illustrative mockup of a travel package website with dynamic package cards"
-      className={cn("w-full overflow-hidden rounded-2xl border border-white/10 bg-[#0c0d12] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]", className)}
+      className={cn("w-full overflow-hidden rounded-2xl border border-ink/10 bg-[#0c0d12] shadow-[0_30px_80px_-20px_var(--shadow-strong)]", className)}
     >
-      <div className="flex items-center gap-3 border-b border-white/[0.06] bg-raised px-4 py-2.5" aria-hidden="true">
+      <div className="flex items-center gap-3 border-b border-ink/[0.06] bg-raised px-4 py-2.5" aria-hidden="true">
         <span className="flex gap-1.5">
-          <span className="size-2.5 rounded-full bg-white/15" />
-          <span className="size-2.5 rounded-full bg-white/15" />
-          <span className="size-2.5 rounded-full bg-white/15" />
+          <span className="size-2.5 rounded-full bg-ink/15" />
+          <span className="size-2.5 rounded-full bg-ink/15" />
+          <span className="size-2.5 rounded-full bg-ink/15" />
         </span>
         <span className="flex flex-1 items-center gap-1.5 truncate rounded-md bg-bg/70 px-2.5 py-1 font-mono text-[10.5px] text-muted">
           <Lock className="size-3" /> travel-website / packages
@@ -101,15 +103,15 @@ export function BrowserMockup({ className }: { className?: string }) {
       </div>
       <div className="p-4 sm:p-5" aria-hidden="true">
         <div className="relative overflow-hidden rounded-xl bg-[radial-gradient(120%_120%_at_0%_0%,color-mix(in_oklab,var(--brand-secondary)_45%,transparent),transparent_60%),radial-gradient(120%_120%_at_100%_100%,color-mix(in_oklab,var(--brand-primary)_45%,transparent),transparent_60%)] p-5">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-white/60">Curated holidays</p>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-ink/60">Curated holidays</p>
           <p className="mt-2 max-w-[16rem] text-lg font-semibold leading-tight text-white">Discover your next journey</p>
-          <div className="mt-4 flex max-w-xs items-center gap-2 rounded-lg bg-black/40 px-3 py-2 text-[11px] text-white/70">
+          <div className="mt-4 flex max-w-xs items-center gap-2 rounded-lg bg-black/40 px-3 py-2 text-[11px] text-ink/70">
             <Search className="size-3.5" /> Search destinations
           </div>
         </div>
         <div className="mt-4 grid grid-cols-3 gap-3">
           {["Hill escape", "Coastal week", "Heritage tour"].map((t, i) => (
-            <div key={t} className="overflow-hidden rounded-lg border border-white/[0.06] bg-raised">
+            <div key={t} className="overflow-hidden rounded-lg border border-ink/[0.06] bg-raised">
               <div
                 className="h-14 sm:h-16"
                 style={{

@@ -28,7 +28,7 @@ export default async function WorkPage() {
         description="A selection of AI assistants, automations and websites we've built. Each case study lists only features that were implemented."
       />
       <Section className="pt-0 sm:pt-0">
-        <Reveal className="mb-10 flex items-start gap-3 rounded-2xl border border-white/[0.07] bg-surface/60 p-4 text-sm text-muted">
+        <Reveal className="mb-10 flex items-start gap-3 rounded-2xl border border-ink/[0.07] bg-surface/60 p-4 text-sm text-muted">
           <Info className="mt-0.5 size-4 shrink-0 text-primary-bright" aria-hidden="true" />
           <p>
             To protect client confidentiality, some projects are shown without client names. Where real screenshots aren&apos;t available, visuals are illustrative mockups built to explain the solution and are labelled as such.

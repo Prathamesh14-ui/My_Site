@@ -75,12 +75,12 @@ async function CaseStudyPageContent({ params }: Pick<PageProps<"/work/[slug]">, 
       {/* Visual */}
       <Section className="pt-0 sm:pt-0">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.07] bg-[radial-gradient(70%_90%_at_50%_0%,color-mix(in_oklab,var(--brand-primary)_22%,transparent),transparent),var(--brand-surface)] px-5 py-12 sm:px-12 sm:py-16">
+          <div className="relative overflow-hidden rounded-[2rem] border border-ink/[0.07] bg-[radial-gradient(70%_90%_at_50%_0%,color-mix(in_oklab,var(--brand-primary)_22%,transparent),transparent),var(--brand-surface)] px-5 py-12 sm:px-12 sm:py-16">
             <div aria-hidden="true" className="grid-bg absolute inset-0 opacity-60" />
             {p.screenshots.length > 0 ? (
               <div className="relative grid gap-6 md:grid-cols-2">
                 {p.screenshots.map((s) => (
-                  <Image key={s.src} src={s.src} alt={s.alt} width={s.width ?? 1600} height={s.height ?? 1000} className="rounded-xl border border-white/10" sizes="(min-width: 768px) 50vw, 100vw" />
+                  <Image key={s.src} src={s.src} alt={s.alt} width={s.width ?? 1600} height={s.height ?? 1000} className="rounded-xl border border-ink/10" sizes="(min-width: 768px) 50vw, 100vw" />
                 ))}
               </div>
             ) : (
@@ -136,12 +136,12 @@ async function CaseStudyPageContent({ params }: Pick<PageProps<"/work/[slug]">, 
       </Section>
 
       {p.flow && (
-        <Section labelledBy="flow-heading" className="border-y border-white/[0.05] bg-surface/30">
+        <Section labelledBy="flow-heading" className="border-y border-ink/[0.05] bg-surface/30">
           <SectionHeading id="flow-heading" eyebrow="How it works" title="The flow, step by step" />
           <ol className="mt-12 flex flex-col gap-3 lg:flex-row lg:items-stretch">
             {p.flow.map((step, i) => (
               <li key={step} className="flex flex-col items-center gap-3 lg:flex-1 lg:flex-row">
-                <Reveal delay={i * 0.05} className="w-full rounded-2xl border border-white/[0.08] bg-bg/70 p-4 lg:h-full">
+                <Reveal delay={i * 0.05} className="w-full rounded-2xl border border-ink/[0.08] bg-bg/70 p-4 lg:h-full">
                   <span className="font-mono text-xs text-primary-bright">{String(i + 1).padStart(2, "0")}</span>
                   <p className="mt-2 text-sm font-medium leading-snug text-fg">{step}</p>
                 </Reveal>

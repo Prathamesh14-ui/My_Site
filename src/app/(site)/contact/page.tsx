@@ -35,7 +35,7 @@ export default async function ContactPage() {
           </Reveal>
           <Reveal delay={0.08} className="space-y-4 lg:sticky lg:top-24">
             <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="card card-hover group flex items-start gap-4 p-6">
-              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-emerald-400/10 text-emerald-300">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-success/10 text-success">
                 <WhatsAppIcon size={20} />
               </span>
               <div>
@@ -63,7 +63,7 @@ export default async function ContactPage() {
                 <li>• Recommend the right approach (AI, automation, web)</li>
                 <li>• Outline scope, timeline and next steps</li>
               </ul>
-              <div className="mt-5 space-y-2 border-t border-white/[0.06] pt-5 text-sm text-muted">
+              <div className="mt-5 space-y-2 border-t border-ink/[0.06] pt-5 text-sm text-muted">
                 <p className="flex items-center gap-2"><Clock className="size-4" aria-hidden="true" /> {siteConfig.contact.hours}</p>
                 <p className="flex items-center gap-2"><MapPin className="size-4" aria-hidden="true" /> {siteConfig.location.city}, {siteConfig.location.country}. Working with clients worldwide.</p>
               </div>

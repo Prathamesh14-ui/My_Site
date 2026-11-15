@@ -77,7 +77,22 @@ export const siteConfig = {
     primaryBright: "#A78BFA",
     secondary: "#3B82F6", // electric blue
     secondaryBright: "#60A5FA",
+    /** Light theme (visitors can switch with the theme toggle; dark is the default). */
+    light: {
+      background: "#F6F6FB",
+      surface: "#FFFFFF",
+      surfaceRaised: "#F0F0F7",
+      border: "#E2E3EC",
+      foreground: "#0B0C14",
+      muted: "#555B6E",
+      primary: "#7C3AED",
+      primaryBright: "#6D28D9", // darker for readable accent text on white
+      secondary: "#2563EB",
+      secondaryBright: "#1D4ED8",
+    },
   },
+  /** Theme shown to first-time visitors: "dark", "light" or "system". */
+  defaultTheme: "dark" as "dark" | "light" | "system",
 } as const;
 
 export type SiteConfig = typeof siteConfig;

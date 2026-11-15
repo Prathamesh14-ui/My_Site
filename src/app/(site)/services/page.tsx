@@ -37,7 +37,7 @@ export default async function ServicesPage() {
             <Link
               key={c.slug}
               href={`#${c.slug}`}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-fg/85 transition-colors hover:border-primary/40 hover:text-fg"
+              className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-ink/[0.03] px-4 py-2 text-sm text-fg/85 transition-colors hover:border-primary/40 hover:text-fg"
             >
               <Icon name={c.icon} size={16} className="text-primary-bright" /> {c.title}
             </Link>
@@ -46,7 +46,7 @@ export default async function ServicesPage() {
       </PageHero>
 
       {serviceCategories.map((cat, i) => (
-        <Section key={cat.slug} id={cat.slug} labelledBy={`${cat.slug}-title`} className={i % 2 === 1 ? "border-y border-white/[0.05] bg-surface/30" : ""}>
+        <Section key={cat.slug} id={cat.slug} labelledBy={`${cat.slug}-title`} className={i % 2 === 1 ? "border-y border-ink/[0.05] bg-surface/30" : ""}>
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <SectionHeading id={`${cat.slug}-title`} eyebrow={`0${i + 1} · ${cat.eyebrow}`} title={cat.title} description={cat.intro} />
             <Reveal className="flex shrink-0 flex-wrap gap-3">

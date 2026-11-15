@@ -100,7 +100,7 @@ async function SubServicePageContent({ params }: Pick<PageProps<"/services/[slug
                 </li>
               ))}
             </ul>
-            <Reveal className="mt-10 rounded-2xl border border-white/[0.07] bg-surface/60 p-5">
+            <Reveal className="mt-10 rounded-2xl border border-ink/[0.07] bg-surface/60 p-5">
               <p className="text-xs uppercase tracking-wider text-muted">Ideal for</p>
               <p className="mt-1.5 font-medium text-fg">{s.idealFor}</p>
             </Reveal>
@@ -111,7 +111,7 @@ async function SubServicePageContent({ params }: Pick<PageProps<"/services/[slug
         </div>
       </Section>
 
-      <Section labelledBy="uses-heading" className="border-y border-white/[0.05] bg-surface/30">
+      <Section labelledBy="uses-heading" className="border-y border-ink/[0.05] bg-surface/30">
         <SectionHeading id="uses-heading" eyebrow="Real-world use cases" title="How businesses use it" />
         <ul className="mt-12 grid gap-4 md:grid-cols-3">
           {s.useCases.map((u, i) => (
@@ -139,7 +139,7 @@ async function SubServicePageContent({ params }: Pick<PageProps<"/services/[slug
         </div>
       </Section>
 
-      <Section labelledBy="related-heading" className="border-t border-white/[0.05] pt-16 sm:pt-20">
+      <Section labelledBy="related-heading" className="border-t border-ink/[0.05] pt-16 sm:pt-20">
         <h2 id="related-heading" className="text-xl font-semibold text-fg">Related {category.shortTitle.toLowerCase()} services</h2>
         <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {siblings.map((x) => (

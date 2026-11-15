@@ -82,16 +82,16 @@ export function CostEstimator() {
             {pricingConfig.projectTypes.map((t) => {
               const on = Boolean(sel.types[t.id]);
               return (
-                <div key={t.id} className={cn("rounded-2xl border transition-colors", on ? "border-primary/50 bg-primary/[0.07]" : "border-white/[0.08] bg-bg/50 hover:border-white/20")}>
+                <div key={t.id} className={cn("rounded-2xl border transition-colors", on ? "border-primary/50 bg-primary/[0.07]" : "border-ink/[0.08] bg-bg/50 hover:border-ink/20")}>
                   <button type="button" aria-pressed={on} onClick={() => toggleType(t.id)} className="flex w-full items-start gap-3.5 p-4 text-left">
-                    <span className={cn("grid size-10 shrink-0 place-items-center rounded-xl border", on ? "border-transparent bg-[linear-gradient(135deg,var(--brand-primary),var(--brand-secondary))] text-white" : "border-white/10 text-muted")}>
+                    <span className={cn("grid size-10 shrink-0 place-items-center rounded-xl border", on ? "border-transparent bg-[linear-gradient(135deg,var(--brand-primary),var(--brand-secondary))] text-white" : "border-ink/10 text-muted")}>
                       <Icon name={typeIcons[t.id] ?? "sparkles"} size={18} />
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="block font-medium text-fg">{t.label}</span>
                       <span className="mt-0.5 block text-xs leading-relaxed text-muted">{t.description}</span>
                     </span>
-                    <span className={cn("mt-1 grid size-5 shrink-0 place-items-center rounded-md border", on ? "border-primary bg-primary text-white" : "border-white/20")} aria-hidden="true">
+                    <span className={cn("mt-1 grid size-5 shrink-0 place-items-center rounded-md border", on ? "border-primary bg-primary text-white" : "border-ink/20")} aria-hidden="true">
                       {on && <Check className="size-3.5" />}
                     </span>
                   </button>
@@ -108,7 +108,7 @@ export function CostEstimator() {
                             onClick={() => setTier(t.id, tier)}
                             className={cn(
                               "rounded-lg px-1.5 py-2 text-[11.5px] leading-tight transition-colors",
-                              sel.types[t.id] === tier ? "bg-white/10 text-fg" : "text-muted hover:text-fg",
+                              sel.types[t.id] === tier ? "bg-ink/10 text-fg" : "text-muted hover:text-fg",
                             )}
                           >
                             {t.tiers[tier].label}
@@ -138,7 +138,7 @@ export function CostEstimator() {
                   onClick={() => toggleAddon(a.id)}
                   className={cn(
                     "inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm transition-colors",
-                    on ? "border-primary/50 bg-primary/15 text-fg" : "border-white/10 text-muted hover:border-white/25 hover:text-fg",
+                    on ? "border-primary/50 bg-primary/15 text-fg" : "border-ink/10 text-muted hover:border-ink/25 hover:text-fg",
                   )}
                 >
                   {on ? <Check className="size-3.5 text-primary-bright" aria-hidden="true" /> : <span className="text-base leading-none" aria-hidden="true">+</span>}
@@ -163,7 +163,7 @@ export function CostEstimator() {
                 onClick={() => setSel((s) => ({ ...s, urgency: k }))}
                 className={cn(
                   "rounded-xl border px-4 py-3 text-left text-sm transition-colors",
-                  sel.urgency === k ? "border-primary/50 bg-primary/10 text-fg" : "border-white/10 text-muted hover:text-fg",
+                  sel.urgency === k ? "border-primary/50 bg-primary/10 text-fg" : "border-ink/10 text-muted hover:text-fg",
                 )}
               >
                 {pricingConfig.urgency[k].label}
@@ -176,7 +176,7 @@ export function CostEstimator() {
       {/* Summary */}
       <aside aria-labelledby="estimate-summary" className="lg:sticky lg:top-24">
         <div className="glass overflow-hidden rounded-3xl">
-          <div className="border-b border-white/[0.06] p-6">
+          <div className="border-b border-ink/[0.06] p-6">
             <h2 id="estimate-summary" className="text-lg font-semibold text-fg">Your project summary</h2>
             <p className="mt-1 text-sm text-muted">Updates as you choose.</p>
           </div>
@@ -205,7 +205,7 @@ export function CostEstimator() {
                 <span className="text-muted">Relative scope</span>
                 <span className="font-medium text-fg">{complexityLabel(result.complexity)}</span>
               </div>
-              <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/[0.06]">
+              <div className="mt-2 h-2 overflow-hidden rounded-full bg-ink/[0.06]">
                 <motion.div
                   className="h-full rounded-full bg-[linear-gradient(90deg,var(--brand-primary),var(--brand-secondary))]"
                   animate={{ width: `${result.complexity}%` }}
@@ -214,7 +214,7 @@ export function CostEstimator() {
               </div>
             </div>
 
-            <dl className="grid grid-cols-2 gap-4 border-t border-white/[0.06] pt-5 text-sm">
+            <dl className="grid grid-cols-2 gap-4 border-t border-ink/[0.06] pt-5 text-sm">
               <div>
                 <dt className="text-muted">Indicative timeline</dt>
                 <dd className="mt-1 font-medium text-fg">{result.weeks ? `${result.weeks[0]}–${result.weeks[1]} weeks` : "—"}</dd>
@@ -227,7 +227,7 @@ export function CostEstimator() {
               </div>
             </dl>
 
-            <p className="flex gap-2 rounded-xl border border-white/[0.06] bg-bg/50 p-3 text-xs leading-relaxed text-muted">
+            <p className="flex gap-2 rounded-xl border border-ink/[0.06] bg-bg/50 p-3 text-xs leading-relaxed text-muted">
               <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
               {pricingConfig.disclaimer}
             </p>
@@ -245,7 +245,7 @@ export function CostEstimator() {
 function StepTitle({ n, title, subtitle }: { n: number; title: string; subtitle?: string }) {
   return (
     <div className="flex items-start gap-4">
-      <span className="grid size-8 shrink-0 place-items-center rounded-full border border-white/10 font-mono text-xs text-primary-bright">{n}</span>
+      <span className="grid size-8 shrink-0 place-items-center rounded-full border border-ink/10 font-mono text-xs text-primary-bright">{n}</span>
       <div>
         <h2 className="text-lg font-semibold text-fg">{title}</h2>
         {subtitle && <p className="mt-0.5 text-sm text-muted">{subtitle}</p>}

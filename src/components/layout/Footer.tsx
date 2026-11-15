@@ -19,7 +19,7 @@ export async function Footer() {
   const socials = (Object.keys(siteConfig.social) as (keyof typeof siteConfig.social)[]).filter((k) => siteConfig.social[k]);
 
   return (
-    <footer className="relative mt-10 border-t border-white/[0.06] bg-surface/40">
+    <footer className="relative mt-10 border-t border-ink/[0.06] bg-surface/40">
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,var(--brand-primary),var(--brand-secondary),transparent)] opacity-50" />
       <Container className="py-16">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_2fr]">
@@ -73,7 +73,7 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/[0.06] pt-8 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-ink/[0.06] pt-8 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
             © <CurrentYear /> {siteConfig.name}. All rights reserved.
           </p>

@@ -22,7 +22,7 @@ export function TrustIntro() {
     { title: "Owned by you", body: "Documented code and workflows, deployed on accounts you control." },
   ];
   return (
-    <Section labelledBy="intro-title" className="border-y border-white/[0.05] bg-surface/30 py-16 sm:py-20">
+    <Section labelledBy="intro-title" className="border-y border-ink/[0.05] bg-surface/30 py-16 sm:py-20">
       <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-end">
         <Reveal>
           <p className="eyebrow mb-4">A technology partner, not just a chatbot vendor</p>
@@ -81,14 +81,14 @@ export async function ServicesOverview() {
           <Reveal key={cat.slug} delay={i * 0.08}>
             <article className="card card-hover group flex h-full flex-col p-7 sm:p-8">
               <div className="flex items-center justify-between">
-                <span className="grid size-12 place-items-center rounded-2xl border border-white/10 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--brand-primary)_25%,transparent),color-mix(in_oklab,var(--brand-secondary)_18%,transparent))] text-fg">
+                <span className="grid size-12 place-items-center rounded-2xl border border-ink/10 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--brand-primary)_25%,transparent),color-mix(in_oklab,var(--brand-secondary)_18%,transparent))] text-fg">
                   <Icon name={cat.icon} size={22} />
                 </span>
                 <span className="font-mono text-xs text-muted">0{i + 1}</span>
               </div>
               <h3 className="mt-7 text-2xl font-semibold tracking-tight text-fg">{cat.title}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-muted">{cat.tagline}</p>
-              <ul className="mt-6 space-y-2.5 border-t border-white/[0.06] pt-6">
+              <ul className="mt-6 space-y-2.5 border-t border-ink/[0.06] pt-6">
                 {cat.services.map((s) => (
                   <li key={s.slug}>
                     <Link href={`/services/${cat.slug}/${s.slug}`} className="flex items-center justify-between gap-3 text-sm text-fg/80 transition-colors hover:text-fg">
@@ -207,7 +207,7 @@ export async function FeaturedWeb() {
 /* 5 ─ Interactive automation showcase */
 export function AutomationShowcase() {
   return (
-    <Section id="automation" labelledBy="automation-title" className="border-y border-white/[0.05] bg-surface/30">
+    <Section id="automation" labelledBy="automation-title" className="border-y border-ink/[0.05] bg-surface/30">
       <SectionHeading
         id="automation-title"
         align="center"
@@ -261,7 +261,7 @@ export function ProjectCard({ project: p }: { project: Project }) {
   const shot = p.screenshots[0];
   return (
     <article className="card card-hover group relative flex h-full flex-col overflow-hidden">
-      <div className="relative flex h-72 items-start justify-center overflow-hidden border-b border-white/[0.06] bg-[radial-gradient(80%_80%_at_50%_0%,color-mix(in_oklab,var(--brand-primary)_18%,transparent),transparent)] px-6 pt-14">
+      <div className="relative flex h-72 items-start justify-center overflow-hidden border-b border-ink/[0.06] bg-[radial-gradient(80%_80%_at_50%_0%,color-mix(in_oklab,var(--brand-primary)_18%,transparent),transparent)] px-6 pt-14">
         {shot ? (
           <Image
             src={shot.src}
@@ -269,7 +269,7 @@ export function ProjectCard({ project: p }: { project: Project }) {
             width={shot.width ?? 1600}
             height={shot.height ?? 1000}
             sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
-            className="w-full rounded-t-xl border border-white/10 object-cover object-top transition-transform duration-500 group-hover:-translate-y-2"
+            className="w-full rounded-t-xl border border-ink/10 object-cover object-top transition-transform duration-500 group-hover:-translate-y-2"
           />
         ) : (
           <>
@@ -315,7 +315,7 @@ export function WhyUs() {
           </>
         }
       />
-      <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-ink/[0.06] bg-ink/[0.06] sm:grid-cols-2 lg:grid-cols-3">
         {whyUs.map((w, i) => (
           <Reveal key={w.title} delay={(i % 3) * 0.06} className="bg-bg">
             <div className="group h-full p-7 transition-colors duration-300 hover:bg-surface sm:p-8">
@@ -333,7 +333,7 @@ export function WhyUs() {
 /* 8 ─ Development process */
 export function Process() {
   return (
-    <Section id="process" labelledBy="process-title" className="border-y border-white/[0.05] bg-surface/30">
+    <Section id="process" labelledBy="process-title" className="border-y border-ink/[0.05] bg-surface/30">
       <SectionHeading
         id="process-title"
         eyebrow="How we work"
@@ -349,7 +349,7 @@ export function Process() {
         {processSteps.map((s, i) => (
           <li key={s.title}>
             <Reveal delay={i * 0.07} className="relative flex gap-5 md:block">
-              <span className="relative z-10 grid size-14 shrink-0 place-items-center rounded-2xl border border-white/10 bg-raised text-primary-bright">
+              <span className="relative z-10 grid size-14 shrink-0 place-items-center rounded-2xl border border-ink/10 bg-raised text-primary-bright">
                 <Icon name={s.icon} size={20} />
               </span>
               <div className="md:mt-6">
@@ -388,7 +388,7 @@ export function TechStack() {
                   .filter((t) => t.group === g)
                   .map((t) => (
                     <li key={t.name}>
-                      <span className="inline-block rounded-lg border border-white/[0.07] bg-bg/60 px-2.5 py-1.5 text-[13px] text-fg/85">{t.name}</span>
+                      <span className="inline-block rounded-lg border border-ink/[0.07] bg-bg/60 px-2.5 py-1.5 text-[13px] text-fg/85">{t.name}</span>
                     </li>
                   ))}
               </ul>
@@ -420,12 +420,12 @@ export function FAQ({ items }: { items: { q: string; a: string }[] }) {
           }
         />
         <Reveal delay={0.05}>
-          <div className="divide-y divide-white/[0.07] border-y border-white/[0.07]">
+          <div className="divide-y divide-ink/[0.07] border-y border-ink/[0.07]">
             {items.map((f) => (
               <details key={f.q} className="group py-1">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-[1.02rem] font-medium text-fg [&::-webkit-details-marker]:hidden">
                   {f.q}
-                  <span className="relative grid size-7 shrink-0 place-items-center rounded-full border border-white/10 text-muted transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
+                  <span className="relative grid size-7 shrink-0 place-items-center rounded-full border border-ink/10 text-muted transition-transform duration-300 group-open:rotate-45" aria-hidden="true">
                     +
                   </span>
                 </summary>
@@ -455,7 +455,7 @@ export function ContactCTA({
     <section aria-labelledby="cta-title" className="relative py-20 sm:py-28">
       <Container>
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-surface px-6 py-16 text-center sm:px-12 sm:py-20">
+          <div className="relative overflow-hidden rounded-[2rem] border border-ink/10 bg-surface px-6 py-16 text-center sm:px-12 sm:py-20">
             <div aria-hidden="true" className="grid-bg absolute inset-0 opacity-60" />
             <div aria-hidden="true" className="glow-primary absolute -top-40 left-1/2 h-[420px] w-[720px] -translate-x-1/2 opacity-80 blur-3xl" />
             <div className="relative mx-auto max-w-2xl">

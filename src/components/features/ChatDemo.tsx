@@ -95,9 +95,9 @@ export function ChatDemo({ className }: { className?: string }) {
   const config = chatScenarios[scenario];
 
   return (
-    <div className={cn("glass relative flex h-[560px] flex-col overflow-hidden rounded-3xl shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)] sm:h-[600px]", className)}>
+    <div className={cn("glass relative flex h-[560px] flex-col overflow-hidden rounded-3xl shadow-[0_40px_120px_-30px_var(--shadow-strong)] sm:h-[600px]", className)}>
       {/* Header */}
-      <div className="border-b border-white/[0.06] px-4 py-3.5 sm:px-5">
+      <div className="border-b border-ink/[0.06] px-4 py-3.5 sm:px-5">
         <div className="flex items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-3">
             <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[linear-gradient(135deg,var(--brand-primary),var(--brand-secondary))] text-white">
@@ -119,7 +119,7 @@ export function ChatDemo({ className }: { className?: string }) {
               onClick={() => switchScenario(s)}
               className={cn(
                 "shrink-0 rounded-full px-3 py-1.5 text-xs transition-colors",
-                s === scenario ? "bg-white/10 text-fg" : "text-muted hover:bg-white/[0.05] hover:text-fg",
+                s === scenario ? "bg-ink/10 text-fg" : "text-muted hover:bg-ink/[0.05] hover:text-fg",
               )}
             >
               {chatScenarios[s].label}
@@ -157,7 +157,7 @@ export function ChatDemo({ className }: { className?: string }) {
       </div>
 
       {/* Composer */}
-      <div className="border-t border-white/[0.06] p-3 sm:p-4">
+      <div className="border-t border-ink/[0.06] p-3 sm:p-4">
         <form onSubmit={onSubmit} className="flex items-center gap-2">
           <label htmlFor="chat-input" className="sr-only">
             Message the assistant
@@ -184,7 +184,7 @@ export function ChatDemo({ className }: { className?: string }) {
               type="button"
               onClick={() => switchScenario(scenario)}
               aria-label="Restart conversation"
-              className="grid size-11 shrink-0 place-items-center rounded-full border border-white/10 text-muted hover:text-fg"
+              className="grid size-11 shrink-0 place-items-center rounded-full border border-ink/10 text-muted hover:text-fg"
             >
               <RotateCcw className="size-4" aria-hidden="true" />
             </button>
@@ -202,14 +202,14 @@ export function ChatDemo({ className }: { className?: string }) {
 }
 
 function ModeBadge({ mode }: { mode: ChatMode | null }) {
-  if (!mode) return <span className="h-6 w-20 animate-pulse rounded-full bg-white/[0.06]" aria-hidden="true" />;
+  if (!mode) return <span className="h-6 w-20 animate-pulse rounded-full bg-ink/[0.06]" aria-hidden="true" />;
   return mode === "live" ? (
-    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-2.5 py-1 text-[11px] font-medium text-emerald-300">
-      <span className="size-1.5 rounded-full bg-emerald-400" aria-hidden="true" /> Live AI
+    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-success/25 bg-success/10 px-2.5 py-1 text-[11px] font-medium text-success">
+      <span className="size-1.5 rounded-full bg-success" aria-hidden="true" /> Live AI
     </span>
   ) : (
-    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-amber-300/25 bg-amber-300/10 px-2.5 py-1 text-[11px] font-medium text-amber-200" title="No AI backend configured — replies are scripted">
-      <span className="size-1.5 rounded-full bg-amber-300" aria-hidden="true" /> Demo mode · scripted
+    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-warning/25 bg-warning/10 px-2.5 py-1 text-[11px] font-medium text-warning" title="No AI backend configured — replies are scripted">
+      <span className="size-1.5 rounded-full bg-warning" aria-hidden="true" /> Demo mode · scripted
     </span>
   );
 }
@@ -223,8 +223,8 @@ function Bubble({ role, error, children }: { role: "user" | "assistant"; error?:
           role === "user"
             ? "rounded-br-md bg-[linear-gradient(135deg,var(--brand-primary),color-mix(in_oklab,var(--brand-primary)_60%,var(--brand-secondary)))] text-white"
             : error
-              ? "rounded-bl-md border border-red-400/30 bg-red-500/10 text-red-200"
-              : "rounded-bl-md border border-white/[0.07] bg-raised/80 text-fg/90",
+              ? "rounded-bl-md border border-danger/30 bg-danger/10 text-danger"
+              : "rounded-bl-md border border-ink/[0.07] bg-raised/80 text-fg/90",
         )}
       >
         <span className="sr-only">{role === "user" ? "You: " : "Assistant: "}</span>

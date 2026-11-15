@@ -15,7 +15,7 @@ export function Hero() {
         <div className="grid items-center gap-14 lg:grid-cols-[1.08fr_1fr] lg:gap-10">
           <div>
             <Reveal>
-              <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] py-1 pl-1 pr-3 text-xs text-fg/80">
+              <p className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-ink/[0.03] py-1 pl-1 pr-3 text-xs text-fg/80">
                 <span className="rounded-full bg-primary/20 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary-bright">New</span>
                 AI agents · Automation · Web — one team
               </p>
