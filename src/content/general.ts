@@ -1,4 +1,4 @@
-import type { IconName } from "@/components/ui/Icon";
+import type { IconName } from "@/components/ui/icon-names";
 
 export const navigation = [
   { label: "Services", href: "/services" },

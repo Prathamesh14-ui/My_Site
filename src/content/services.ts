@@ -1,4 +1,8 @@
-import type { ServiceCategory, SubService } from "./types";
+/**
+ * Local starter content. Used when Sanity is not connected (or empty), and as the
+ * source for the Studio's "Import starter content" tool.
+ */
+import type { ServiceCategory } from "./types";
 
 export const serviceCategories: ServiceCategory[] = [
   {
@@ -404,17 +408,3 @@ export const serviceCategories: ServiceCategory[] = [
     ],
   },
 ];
-
-export function getCategory(slug: string) {
-  return serviceCategories.find((c) => c.slug === slug);
-}
-
-export function getService(categorySlug: string, serviceSlug: string): { category: ServiceCategory; service: SubService } | undefined {
-  const category = getCategory(categorySlug);
-  const service = category?.services.find((s) => s.slug === serviceSlug);
-  return category && service ? { category, service } : undefined;
-}
-
-export const allServiceOptions = serviceCategories.flatMap((c) =>
-  c.services.map((s) => ({ value: s.title, group: c.title })),
-);

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
-import { faqs } from "@/content/general";
+import { getFaqs } from "@/lib/content";
 import { Hero } from "@/components/home/Hero";
 import {
   TrustIntro,
@@ -24,7 +24,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const faqs = await getFaqs();
   return (
     <>
       <Hero />
@@ -37,7 +38,7 @@ export default function HomePage() {
       <WhyUs />
       <Process />
       <TechStack />
-      <FAQ />
+      <FAQ items={faqs} />
       <ContactCTA />
       <JsonLd data={faqJsonLd(faqs)} />
     </>

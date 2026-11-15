@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Page not found",
@@ -9,6 +11,9 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
+    <>
+    <Header />
+    <main id="main" className="flex-1 overflow-x-clip">
     <section className="relative overflow-hidden pb-24 pt-40">
       <div aria-hidden="true" className="grid-bg pointer-events-none absolute inset-0" />
       <div aria-hidden="true" className="glow-primary pointer-events-none absolute -top-40 left-1/2 h-[420px] w-[700px] -translate-x-1/2 opacity-60 blur-3xl" />
@@ -24,5 +29,8 @@ export default function NotFound() {
         </div>
       </Container>
     </section>
+    </main>
+    <Footer />
+    </>
   );
 }

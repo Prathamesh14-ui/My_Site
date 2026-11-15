@@ -3,6 +3,8 @@ import {
   Target, Users, Code, Globe, Building, Zap, ShoppingCart, Rocket, Layers, PenTool, RefreshCw,
   Search, Shield, Check, Lock, KeyRound, MessageCircle, type LucideProps,
 } from "lucide-react";
+import type { ComponentType } from "react";
+import type { IconName } from "./icon-names";
 
 function WhatsAppIcon(props: LucideProps) {
   const { size = 24, className, strokeWidth = 1.8 } = props;
@@ -14,7 +16,7 @@ function WhatsAppIcon(props: LucideProps) {
   );
 }
 
-const icons = {
+const icons: Record<IconName, ComponentType<LucideProps>> = {
   brain: Brain,
   bot: Bot,
   messages: MessagesSquare,
@@ -43,9 +45,9 @@ const icons = {
   key: KeyRound,
   chat: MessageCircle,
   whatsapp: WhatsAppIcon,
-} as const;
+};
 
-export type IconName = keyof typeof icons;
+export type { IconName };
 
 export function Icon({ name, ...props }: { name: IconName } & LucideProps) {
   const Cmp = icons[name];

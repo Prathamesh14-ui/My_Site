@@ -2,9 +2,10 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ArrowUpRight, Check } from "lucide-react";
 import { siteConfig, whatsappLink } from "@/config/site";
-import { serviceCategories } from "@/content/services";
-import { projects } from "@/content/projects";
-import { faqs, industries, processSteps, technologies, whyUs } from "@/content/general";
+import Image from "next/image";
+import { industries, processSteps, technologies, whyUs } from "@/content/general";
+import type { Project } from "@/content/types";
+import { getCategory, getProjects, getServiceCategories } from "@/lib/content";
 import { Section, SectionHeading, Badge, Container } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon, WhatsAppIcon } from "@/components/ui/Icon";
@@ -61,7 +62,8 @@ export function TrustIntro() {
 }
 
 /* 2 ─ Services overview */
-export function ServicesOverview() {
+export async function ServicesOverview() {
+  const serviceCategories = await getServiceCategories();
   return (
     <Section id="services" labelledBy="services-title">
       <SectionHeading
@@ -111,8 +113,8 @@ export function ServicesOverview() {
 }
 
 /* 3 ─ Featured AI solutions + live chatbot demo */
-export function FeaturedAI() {
-  const ai = serviceCategories[0];
+export async function FeaturedAI() {
+  const ai = (await getCategory("ai-solutions")) ?? (await getServiceCategories())[0];
   return (
     <Section id="ai-demo" labelledBy="ai-title" className="overflow-hidden">
       <div aria-hidden="true" className="glow-primary pointer-events-none absolute left-0 top-1/3 h-[500px] w-[600px] opacity-40 blur-3xl" />
@@ -130,7 +132,7 @@ export function FeaturedAI() {
           />
           <Reveal delay={0.1}>
             <ul className="mt-9 grid gap-3 sm:grid-cols-2">
-              {ai.solution.points.map((p) => (
+              {(ai?.solution.points ?? []).map((p) => (
                 <li key={p} className="flex items-start gap-3 text-sm text-fg/85">
                   <Check className="mt-0.5 size-4 shrink-0 text-primary-bright" aria-hidden="true" /> {p}
                 </li>
@@ -152,8 +154,8 @@ export function FeaturedAI() {
 }
 
 /* 4 ─ Featured website development */
-export function FeaturedWeb() {
-  const web = serviceCategories[2];
+export async function FeaturedWeb() {
+  const web = await getCategory("web-development");
   const pillars = [
     { title: "Performance-first", body: "Server rendering, optimised images and fonts, minimal JavaScript." },
     { title: "Search-ready", body: "Semantic HTML, metadata, sitemaps and structured data built in." },
@@ -179,7 +181,7 @@ export function FeaturedWeb() {
                 Websites engineered to <span className="accent-serif text-gradient">convert</span>.
               </>
             }
-            description={web.intro}
+            description={web?.intro}
           />
           <Reveal delay={0.1}>
             <dl className="mt-9 grid gap-6 sm:grid-cols-2">
@@ -225,7 +227,8 @@ export function AutomationShowcase() {
 }
 
 /* 6 ─ Featured projects */
-export function FeaturedProjects() {
+export async function FeaturedProjects() {
+  const projects = await getProjects();
   return (
     <Section id="work" labelledBy="work-title">
       <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
@@ -254,14 +257,28 @@ export function FeaturedProjects() {
   );
 }
 
-export function ProjectCard({ project: p }: { project: (typeof projects)[number] }) {
+export function ProjectCard({ project: p }: { project: Project }) {
+  const shot = p.screenshots[0];
   return (
     <article className="card card-hover group relative flex h-full flex-col overflow-hidden">
       <div className="relative flex h-72 items-start justify-center overflow-hidden border-b border-white/[0.06] bg-[radial-gradient(80%_80%_at_50%_0%,color-mix(in_oklab,var(--brand-primary)_18%,transparent),transparent)] px-6 pt-14">
-        <div className="w-full transition-transform duration-500 group-hover:-translate-y-2">
-          <ProjectMockup kind={p.mockup} className={p.mockup === "website-travel" ? "" : "max-w-[230px]"} />
-        </div>
-        <MockupLabel className="absolute left-4 top-4" />
+        {shot ? (
+          <Image
+            src={shot.src}
+            alt={shot.alt}
+            width={shot.width ?? 1600}
+            height={shot.height ?? 1000}
+            sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
+            className="w-full rounded-t-xl border border-white/10 object-cover object-top transition-transform duration-500 group-hover:-translate-y-2"
+          />
+        ) : (
+          <>
+            <div className="w-full transition-transform duration-500 group-hover:-translate-y-2">
+              <ProjectMockup kind={p.mockup} className={p.mockup === "website-travel" ? "" : "max-w-[230px]"} />
+            </div>
+            <MockupLabel className="absolute left-4 top-4" />
+          </>
+        )}
       </div>
       <div className="flex flex-1 flex-col p-6">
         <p className="font-mono text-[11px] uppercase tracking-wider text-muted">
@@ -384,7 +401,7 @@ export function TechStack() {
 }
 
 /* 10 ─ FAQ */
-export function FAQ({ items = faqs }: { items?: typeof faqs }) {
+export function FAQ({ items }: { items: { q: string; a: string }[] }) {
   return (
     <Section id="faq" labelledBy="faq-title">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr]">

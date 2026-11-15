@@ -1,10 +1,11 @@
+import { Suspense } from "react";
+import { PageSkeleton } from "@/components/layout/PageSkeleton";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
-import { getProject, projects } from "@/content/projects";
-import { getCategory } from "@/content/services";
+import { getCategory, getProject, getProjects } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { PageHero } from "@/components/layout/PageHero";
@@ -14,23 +15,35 @@ import { Reveal } from "@/components/ui/Reveal";
 import { MockupLabel, ProjectMockup } from "@/components/mockups/Mockups";
 import { ContactCTA, ProjectCard } from "@/components/home/HomeSections";
 
-export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return (await getProjects()).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/work/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const p = getProject(slug);
+  const p = await getProject(slug);
   if (!p) return {};
   return pageMetadata({ title: `${p.title} — Case Study`, description: p.summary.slice(0, 160), path: `/work/${p.slug}` });
 }
 
-export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]">) {
+/**
+ * The URL params are read inside <Suspense> so Next.js can build (and later
+ * refresh) a shared page shell; prerendered slugs are still fully static.
+ */
+export default function CaseStudyPage(props: PageProps<"/work/[slug]">) {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <CaseStudyPageContent params={props.params} />
+    </Suspense>
+  );
+}
+
+async function CaseStudyPageContent({ params }: Pick<PageProps<"/work/[slug]">, "params">) {
   const { slug } = await params;
-  const p = getProject(slug);
+  const p = await getProject(slug);
   if (!p) notFound();
-  const service = getCategory(p.relatedService);
-  const others = projects.filter((x) => x.slug !== p.slug);
+  const service = await getCategory(p.relatedService);
+  const others = (await getProjects()).filter((x) => x.slug !== p.slug);
 
   return (
     <>
@@ -67,7 +80,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
             {p.screenshots.length > 0 ? (
               <div className="relative grid gap-6 md:grid-cols-2">
                 {p.screenshots.map((s) => (
-                  <Image key={s.src} src={s.src} alt={s.alt} width={1200} height={800} className="rounded-xl border border-white/10" sizes="(min-width: 768px) 50vw, 100vw" />
+                  <Image key={s.src} src={s.src} alt={s.alt} width={s.width ?? 1600} height={s.height ?? 1000} className="rounded-xl border border-white/10" sizes="(min-width: 768px) 50vw, 100vw" />
                 ))}
               </div>
             ) : (

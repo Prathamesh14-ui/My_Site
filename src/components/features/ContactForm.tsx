@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { CircleCheck, CircleX, LoaderCircle, Mail } from "lucide-react";
 import { siteConfig, whatsappLink } from "@/config/site";
-import { budgetOptions, enquirySchema, fieldErrors, serviceInterestOptions, type EnquiryField } from "@/lib/enquiry";
+import { FALLBACK_SERVICE_OPTION, budgetOptions, enquirySchema, fieldErrors, type EnquiryField } from "@/lib/enquiry";
 import { ESTIMATE_STORAGE_KEY, type EstimateHandoff } from "@/lib/estimate";
 import { Button } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/Icon";
@@ -15,7 +15,7 @@ type Status = { kind: "idle" } | { kind: "submitting" } | { kind: "success" } | 
 
 const initial = { name: "", business: "", email: "", whatsapp: "", service: "", budget: "", message: "", website: "" };
 
-export function ContactForm() {
+export function ContactForm({ serviceOptions }: { serviceOptions: string[] }) {
   const [values, setValues] = useState(initial);
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<EnquiryField, string>>>({});
@@ -39,13 +39,14 @@ export function ContactForm() {
       /* storage unavailable — ignore */
     }
     const qs = new URLSearchParams(window.location.search).get("service");
-    if (qs && (serviceInterestOptions as readonly string[]).includes(qs)) service = qs;
+    if (qs && serviceOptions.includes(qs)) service = qs;
+    if (service && !serviceOptions.includes(service)) service = FALLBACK_SERVICE_OPTION;
     if (service || message) {
       // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration from browser-only storage
       setValues((v) => ({ ...v, service: service || v.service, message: message || v.message }));
       setPrefilled(Boolean(message));
     }
-  }, []);
+  }, [serviceOptions]);
 
   function update(field: keyof typeof initial, value: string) {
     setValues((v) => ({ ...v, [field]: value }));
@@ -142,7 +143,7 @@ export function ContactForm() {
         <Field label="Service interested in" name="service" required error={errors.service}>
           <select id="service" name="service" value={values.service} onChange={(e) => update("service", e.target.value)} className="input appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22 fill=%22none%22 stroke=%22%239BA1B4%22 stroke-width=%222%22><path d=%22M2 4l4 4 4-4%22/></svg>')] bg-[length:12px] bg-[right_1rem_center] bg-no-repeat pr-10" {...aria("service", errors.service)}>
             <option value="">Select a service…</option>
-            {serviceInterestOptions.map((o) => (
+            {serviceOptions.map((o) => (
               <option key={o} value={o}>{o}</option>
             ))}
           </select>

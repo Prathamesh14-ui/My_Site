@@ -1,7 +1,8 @@
+import { Suspense } from "react";
+import { PageSkeleton } from "@/components/layout/PageSkeleton";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getCategory, serviceCategories } from "@/content/services";
-import { projects } from "@/content/projects";
+import { getCategory, getProjects, getServiceCategories } from "@/lib/content";
 import { pageMetadata, serviceJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { PageHero } from "@/components/layout/PageHero";
@@ -14,22 +15,35 @@ import { ContactCTA, ProjectCard } from "@/components/home/HomeSections";
 import { ChatDemo } from "@/components/features/ChatDemo";
 import { WorkflowVisualizer } from "@/components/features/WorkflowVisualizer";
 
-export function generateStaticParams() {
-  return serviceCategories.map((c) => ({ slug: c.slug }));
+export async function generateStaticParams() {
+  return (await getServiceCategories()).map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/services/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const cat = getCategory(slug);
+  const cat = await getCategory(slug);
   if (!cat) return {};
   return pageMetadata({ title: `${cat.title} Services`, description: cat.seoDescription, path: `/services/${cat.slug}` });
 }
 
-export default async function ServiceCategoryPage({ params }: PageProps<"/services/[slug]">) {
+/**
+ * The URL params are read inside <Suspense> so Next.js can build (and later
+ * refresh) a shared page shell; prerendered slugs are still fully static.
+ */
+export default function ServiceCategoryPage(props: PageProps<"/services/[slug]">) {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <ServiceCategoryPageContent params={props.params} />
+    </Suspense>
+  );
+}
+
+async function ServiceCategoryPageContent({ params }: Pick<PageProps<"/services/[slug]">, "params">) {
   const { slug } = await params;
-  const cat = getCategory(slug);
+  const cat = await getCategory(slug);
   if (!cat) notFound();
 
+  const projects = await getProjects();
   const related = projects.filter(
     (p) => p.relatedService === cat.slug || (cat.slug === "ai-solutions" && p.mockup.startsWith("whatsapp")),
   );

@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { allServiceOptions } from "@/content/services";
 
 /** Budget options shown on the contact form (visitor's budget, not our pricing). */
 export const budgetOptions = [
@@ -11,10 +10,7 @@ export const budgetOptions = [
   "International project (USD/EUR) — let's discuss",
 ] as const;
 
-export const serviceInterestOptions = [
-  ...allServiceOptions.map((o) => o.value),
-  "Multiple services / not sure",
-] as const;
+export const FALLBACK_SERVICE_OPTION = "Multiple services / not sure";
 
 const phoneRegex = /^\+?[0-9\s\-()]{7,20}$/;
 

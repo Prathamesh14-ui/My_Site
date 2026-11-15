@@ -6,6 +6,7 @@ import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { WhatsAppIcon } from "@/components/ui/Icon";
 import { ContactForm } from "@/components/features/ContactForm";
+import { getServiceOptions } from "@/lib/content";
 
 export const metadata = pageMetadata({
   title: "Contact — Book a Free Consultation",
@@ -13,7 +14,8 @@ export const metadata = pageMetadata({
   path: "/contact",
 });
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const serviceOptions = await getServiceOptions();
   return (
     <>
       <PageHero
@@ -29,7 +31,7 @@ export default function ContactPage() {
       <Section className="pt-0 sm:pt-0">
         <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:items-start">
           <Reveal>
-            <ContactForm />
+            <ContactForm serviceOptions={serviceOptions} />
           </Reveal>
           <Reveal delay={0.08} className="space-y-4 lg:sticky lg:top-24">
             <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="card card-hover group flex items-start gap-4 p-6">

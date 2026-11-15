@@ -84,7 +84,3 @@ export const projects: Project[] = [
     relatedService: "web-development",
   },
 ];
-
-export function getProject(slug: string) {
-  return projects.find((p) => p.slug === slug);
-}

@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import { serviceCategories } from "@/content/services";
+import { getServiceCategories } from "@/lib/content";
 import { processSteps, whyUs } from "@/content/general";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/layout/PageHero";
@@ -21,7 +21,8 @@ const commitments = [
   { title: "Built to be maintained", body: "Clean code, documented workflows and monitoring, so your system keeps working long after launch." },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const serviceCategories = await getServiceCategories();
   return (
     <>
       <PageHero

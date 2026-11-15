@@ -74,7 +74,7 @@ export async function POST(req: Request) {
   const upstream = client.beta.messages.stream({
     model: MODEL,
     max_tokens: 1024,
-    system: systemPromptFor(scenario),
+    system: await systemPromptFor(scenario),
     messages,
     output_config: { effort: "low" },
     // Server-side refusal fallback: if the model declines, the API retries on a fallback model.

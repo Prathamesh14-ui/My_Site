@@ -1,4 +1,4 @@
-import type { IconName } from "@/components/ui/Icon";
+import type { IconName } from "@/components/ui/icon-names";
 
 export type VisualKind = "agent" | "workflow" | "browser";
 
@@ -51,6 +51,6 @@ export interface Project {
   flow?: string[];
   mockup: MockupKind;
   /** Real screenshots, if/when available. Empty → coded mockup is shown with a label. */
-  screenshots: { src: string; alt: string }[];
+  screenshots: { src: string; alt: string; width?: number; height?: number }[];
   relatedService: string;
 }

@@ -1,8 +1,10 @@
+import { Suspense } from "react";
+import { PageSkeleton } from "@/components/layout/PageSkeleton";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, Check } from "lucide-react";
-import { getService, serviceCategories } from "@/content/services";
+import { getService, getServiceCategories } from "@/lib/content";
 import { pageMetadata, serviceJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 import { PageHero } from "@/components/layout/PageHero";
@@ -14,13 +16,13 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Benefits, CapabilityGrid, ProblemSolution, ServiceVisual } from "@/components/services/ServiceBlocks";
 import { ContactCTA } from "@/components/home/HomeSections";
 
-export function generateStaticParams() {
-  return serviceCategories.flatMap((c) => c.services.map((s) => ({ slug: c.slug, service: s.slug })));
+export async function generateStaticParams() {
+  return (await getServiceCategories()).flatMap((c) => c.services.map((s) => ({ slug: c.slug, service: s.slug })));
 }
 
 export async function generateMetadata({ params }: PageProps<"/services/[slug]/[service]">): Promise<Metadata> {
   const { slug, service } = await params;
-  const found = getService(slug, service);
+  const found = await getService(slug, service);
   if (!found) return {};
   return pageMetadata({
     title: found.service.title,
@@ -29,9 +31,21 @@ export async function generateMetadata({ params }: PageProps<"/services/[slug]/[
   });
 }
 
-export default async function SubServicePage({ params }: PageProps<"/services/[slug]/[service]">) {
+/**
+ * The URL params are read inside <Suspense> so Next.js can build (and later
+ * refresh) a shared page shell; prerendered slugs are still fully static.
+ */
+export default function SubServicePage(props: PageProps<"/services/[slug]/[service]">) {
+  return (
+    <Suspense fallback={<PageSkeleton />}>
+      <SubServicePageContent params={props.params} />
+    </Suspense>
+  );
+}
+
+async function SubServicePageContent({ params }: Pick<PageProps<"/services/[slug]/[service]">, "params">) {
   const { slug, service } = await params;
-  const found = getService(slug, service);
+  const found = await getService(slug, service);
   if (!found) notFound();
   const { category, service: s } = found;
   const path = `/services/${category.slug}/${s.slug}`;

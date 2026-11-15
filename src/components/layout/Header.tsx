@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { navigation } from "@/content/general";
@@ -12,8 +12,23 @@ import { ButtonLink } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
 
-export function Header() {
+type IsActive = (href: string) => boolean;
+
+/**
+ * Reads the current URL for active-link styling. Isolated in a Suspense boundary so
+ * the header can be part of the prerendered page shell (Cache Components); the
+ * fallback renders the same links without the active state.
+ */
+function ActivePath({ children }: { children: (isActive: IsActive) => ReactNode }) {
+  return <Suspense fallback={children(() => false)}><ActivePathInner>{children}</ActivePathInner></Suspense>;
+}
+
+function ActivePathInner({ children }: { children: (isActive: IsActive) => ReactNode }) {
   const pathname = usePathname();
+  return children((href) => pathname === href || pathname.startsWith(`${href}/`));
+}
+
+export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -37,8 +52,6 @@ export function Header() {
     };
   }, [open]);
 
-  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
-
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div
@@ -51,7 +64,8 @@ export function Header() {
           <Logo />
 
           <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
-            {navigation.map((item) => (
+            <ActivePath>
+            {(isActive) => navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -67,6 +81,7 @@ export function Header() {
                 <span className="relative">{item.label}</span>
               </Link>
             ))}
+            </ActivePath>
           </nav>
 
           <div className="hidden md:block">
@@ -100,7 +115,8 @@ export function Header() {
           >
             <nav aria-label="Mobile" className="flex min-h-full flex-col px-4 pb-8 pt-6">
               <ul className="flex flex-col">
-                {navigation.map((item, i) => (
+                <ActivePath>
+                {(isActive) => navigation.map((item, i) => (
                   <motion.li
                     key={item.href}
                     initial={{ opacity: 0, y: 10 }}
@@ -118,6 +134,7 @@ export function Header() {
                     </Link>
                   </motion.li>
                 ))}
+                </ActivePath>
               </ul>
               <div className="mt-auto flex flex-col gap-3 pt-10">
                 <ButtonLink href={siteConfig.cta.primary.href} size="lg" arrow onClick={() => setOpen(false)}>

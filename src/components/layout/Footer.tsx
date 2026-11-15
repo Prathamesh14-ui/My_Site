@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin } from "lucide-react";
 import { siteConfig, whatsappLink } from "@/config/site";
-import { serviceCategories } from "@/content/services";
+import { getServiceCategories } from "@/lib/content";
 import { Container } from "@/components/ui/Section";
 import { WhatsAppIcon } from "@/components/ui/Icon";
 import { Logo } from "./Logo";
@@ -14,7 +14,8 @@ const socialLabels: Record<keyof typeof siteConfig.social, string> = {
   instagram: "Instagram",
 };
 
-export function Footer() {
+export async function Footer() {
+  const serviceCategories = await getServiceCategories();
   const socials = (Object.keys(siteConfig.social) as (keyof typeof siteConfig.social)[]).filter((k) => siteConfig.social[k]);
 
   return (

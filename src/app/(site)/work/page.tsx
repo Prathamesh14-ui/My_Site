@@ -1,4 +1,4 @@
-import { projects } from "@/content/projects";
+import { getProjects } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/layout/PageHero";
 import { Section } from "@/components/ui/Section";
@@ -13,7 +13,8 @@ export const metadata = pageMetadata({
   path: "/work",
 });
 
-export default function WorkPage() {
+export default async function WorkPage() {
+  const projects = await getProjects();
   return (
     <>
       <PageHero
@@ -30,7 +31,7 @@ export default function WorkPage() {
         <Reveal className="mb-10 flex items-start gap-3 rounded-2xl border border-white/[0.07] bg-surface/60 p-4 text-sm text-muted">
           <Info className="mt-0.5 size-4 shrink-0 text-primary-bright" aria-hidden="true" />
           <p>
-            To protect client confidentiality, some projects are shown without client names. Visuals are illustrative mockups built to explain each solution. They are not screenshots of the live systems.
+            To protect client confidentiality, some projects are shown without client names. Where real screenshots aren&apos;t available, visuals are illustrative mockups built to explain the solution and are labelled as such.
           </p>
         </Reveal>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
