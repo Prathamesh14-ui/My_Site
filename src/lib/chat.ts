@@ -73,7 +73,7 @@ const demoRules: Record<ChatScenario, { rules: Rule[]; fallback: string }> = {
       { match: /start|process|how long|timeline|work with/i, reply: "We start with a free consultation to understand your goals. Then we design the solution, agree scope in writing, build with regular demos, test real scenarios and launch with documentation and support." },
       { match: /n8n|automat|workflow|crm|calendar/i, reply: "We automate repetitive operations with n8n and custom integrations — for example, capturing leads into your CRM, booking appointments into Google Calendar and sending automatic confirmations. Each workflow includes error handling and documentation." },
       { match: /website|next\.?js|web ?site|landing|e-?commerce|cms/i, reply: "We build fast, mobile-first websites with Next.js — from landing pages to CMS-powered sites and web applications — with SEO foundations and enquiry forms connected to your tools." },
-      { match: /hi|hello|hey/i, reply: "Hello! What kind of business do you run? I can suggest where AI, automation or a new website could help." },
+      { match: /\b(hi|hello|hey|namaste)\b/i, reply: "Hello! What kind of business do you run? I can suggest where AI, automation or a new website could help." },
     ],
     fallback: "Good question! In this demo mode I can answer common questions about our services, process and pricing approach. For anything specific, book a free consultation on the contact page and our team will help directly.",
   },
