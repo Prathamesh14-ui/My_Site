@@ -64,7 +64,7 @@ export function ImportContentTool() {
         </Flex>
         {status.kind === "done" && (
           <Card padding={4} radius={2} tone="positive" border>
-            <Text size={2}>{status.message} Open “Content” in the top bar to start editing.</Text>
+            <Text size={2}>{status.message} Open “Structure” in the top bar to start editing.</Text>
           </Card>
         )}
         {status.kind === "error" && (
