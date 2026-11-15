@@ -57,6 +57,10 @@ HTTP method POST, and a secret that matches `SANITY_REVALIDATE_SECRET`.
 **Fallback:** if Sanity isn't configured, is empty, or can't be reached, the site serves the local content in
 `src/content/`, so it never goes blank.
 
+**Enquiries:** with `SANITY_API_TOKEN` set, every contact-form submission is saved under **Enquiries** in the Studio
+(New / In progress / Won / Lost), with private notes and buttons to reply in Gmail, another email app or WhatsApp.
+Keep the dataset **Private** — enquiries contain personal data.
+
 **Screenshots:** upload real screenshots on a case study (with alt text) and they replace the illustrative mockup automatically.
 
 ## Environment variables
@@ -68,6 +72,7 @@ HTTP method POST, and a secret that matches `SANITY_REVALIDATE_SECRET`.
 | `CHAT_MODEL` | Optional model override (default `claude-opus-5-5`) |
 | `RESEND_API_KEY`, `ENQUIRY_TO_EMAIL`, `ENQUIRY_FROM_EMAIL` | Enquiries by email via [Resend](https://resend.com) (verify your sending domain) |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET` | Connect Sanity CMS (see above) |
+| `SANITY_API_TOKEN` | Sanity **Editor** token (server-only). Lets the site read a **private** dataset and saves every enquiry to the Studio's **Enquiries** list |
 | `SANITY_REVALIDATE_SECRET` | Optional — secret for the instant-update webhook |
 | `ENQUIRY_WEBHOOK_URL`, `ENQUIRY_WEBHOOK_SECRET` | Enquiries as JSON to a webhook — e.g. an **n8n Webhook node** (secret sent as `X-Webhook-Secret`) |
 

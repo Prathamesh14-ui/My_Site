@@ -27,7 +27,7 @@ export default function PrivacyPage() {
           </div>
           <div>
             <h2 className="mb-3 text-xl font-semibold text-fg">Storage & third parties</h2>
-            <p>Enquiries are delivered to our business inbox and/or our internal workflow tools through trusted service providers. Access is limited to people who need it to respond to you.</p>
+            <p>Enquiries are stored in our private content management system (Sanity) and may also be delivered to our business inbox through an email provider. Access is limited to people who need it to respond to you.</p>
             <p>The project estimator runs in your browser. Its summary is kept only in your browser session until you choose to send it with an enquiry.</p>
           </div>
           <div>

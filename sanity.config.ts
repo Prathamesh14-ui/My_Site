@@ -20,7 +20,15 @@ export default defineConfig({
   // A syntactically valid placeholder keeps the config importable before setup; the page shows setup steps instead.
   projectId: sanityConfigured ? projectId : "notconfigured",
   dataset,
-  schema: { types: schemaTypes },
+  schema: {
+    types: schemaTypes,
+    // Enquiries only come from the website form — hide them from "Create new".
+    templates: (prev) => prev.filter((t) => t.schemaType !== "enquiry"),
+  },
+  document: {
+    newDocumentOptions: (prev) => prev.filter((item) => item.templateId !== "enquiry"),
+    actions: (prev, ctx) => (ctx.schemaType === "enquiry" ? prev.filter((a) => a.action !== "duplicate") : prev),
+  },
   plugins: [structureTool({ structure }), visionTool({ defaultApiVersion: apiVersion })],
   tools: (prev) => [
     ...prev,
