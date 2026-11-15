@@ -53,7 +53,7 @@ export default async function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1.05, letterSpacing: -2, maxWidth: 980 }}>{siteConfig.tagline}</div>
           <div style={{ marginTop: 28, fontSize: 28, color: c.muted, maxWidth: 900 }}>
-            AI agents · WhatsApp chatbots · n8n automation · Next.js websites
+            AI agents · WhatsApp chatbots · Workflow automation · Websites
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 22, color: c.muted }}>

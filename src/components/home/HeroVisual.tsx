@@ -10,7 +10,7 @@ const nodes: { id: string; label: string; icon: IconName; x: number; y: number }
   { id: "kb", label: "Knowledge", icon: "database", x: 230, y: 330 },
   { id: "cal", label: "Calendar", icon: "calendar", x: 390, y: 70 },
   { id: "crm", label: "CRM", icon: "users", x: 390, y: 250 },
-  { id: "flow", label: "n8n", icon: "workflow", x: 230, y: 30 },
+  { id: "flow", label: "Workflows", icon: "workflow", x: 230, y: 30 },
 ];
 const center = { x: 230, y: 170 };
 

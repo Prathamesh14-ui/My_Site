@@ -36,9 +36,8 @@ export const whyUs: { title: string; body: string; icon: IconName }[] = [
 ];
 
 export const technologies: { name: string; group: "AI" | "Automation" | "Web" | "Channels" }[] = [
+  // List only AI providers you actively use in client projects (add e.g. "Anthropic Claude", "Google Gemini" when you do).
   { name: "OpenAI", group: "AI" },
-  { name: "Anthropic Claude", group: "AI" },
-  { name: "Google Gemini", group: "AI" },
   { name: "RAG / Vector DBs", group: "AI" },
   { name: "n8n", group: "Automation" },
   { name: "Webhooks & REST APIs", group: "Automation" },

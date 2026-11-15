@@ -22,7 +22,7 @@ export const siteConfig = {
   positioning:
     "We build intelligent AI agents, automate business operations and develop modern websites that help businesses grow.",
   description:
-    "AI agents, WhatsApp chatbots, n8n business automation and high-performance Next.js websites for startups, SMEs, clinics, travel and real estate businesses — built in Mumbai, delivered worldwide.",
+    "AI agents, WhatsApp chatbots, business workflow automation and high-performance websites for startups, SMEs, clinics, travel and real estate businesses — built in Mumbai, delivered worldwide.",
 
   /** Public site URL — set NEXT_PUBLIC_SITE_URL in production. */
   url: (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, ""),

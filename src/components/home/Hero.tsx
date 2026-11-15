@@ -46,7 +46,7 @@ export function Hero() {
             </Reveal>
             <Reveal delay={0.24}>
               <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-                {["Custom AI agents", "WhatsApp chatbots", "n8n workflows", "Next.js websites"].map((t) => (
+                {["Custom AI agents", "WhatsApp chatbots", "Workflow automation", "Modern websites"].map((t) => (
                   <li key={t} className="flex items-center gap-2">
                     <span className="size-1 rounded-full bg-primary-bright" aria-hidden="true" /> {t}
                   </li>
