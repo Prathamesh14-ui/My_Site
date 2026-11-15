@@ -38,13 +38,11 @@ export const siteConfig = {
   },
 
   contact: {
-    /** PLACEHOLDER — replace with your business email. */
-    email: "hello@example.com",
+    email: "patu.surve2001@gmail.com",
     whatsapp: {
-      /** PLACEHOLDER — international format, digits only (used for wa.me links). */
-      number: "910000000000",
-      /** PLACEHOLDER — how the number is displayed. */
-      display: "+91 00000 00000",
+      /** International format, digits only (used for wa.me links). */
+      number: "919920035011",
+      display: "+91 99200 35011",
       defaultMessage: "Hi! I'd like to discuss a project with your team.",
     },
     responseTime: "We reply to enquiries within one business day.",
