@@ -16,7 +16,7 @@ export const siteConfig = {
   /** Logo: monogram letters for the built-in mark, or point `imageSrc` at /public/logo.svg */
   logo: {
     monogram: "PS",
-    imageSrc: null as string | null,
+    imageSrc: "/logo-mark.svg" as string | null,
   },
   tagline: "Intelligent AI. Smarter Automation. Digital Growth.",
   positioning:

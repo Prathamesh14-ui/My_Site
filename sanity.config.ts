@@ -11,12 +11,14 @@ import { apiVersion, dataset, projectId, sanityConfigured } from "./src/sanity/e
 import { schemaTypes } from "./src/sanity/schemaTypes";
 import { structure } from "./src/sanity/structure";
 import { ImportContentTool } from "./src/sanity/tools/ImportContentTool";
+import { StudioIcon } from "./src/sanity/components/StudioIcon";
 import { siteConfig } from "./src/config/site";
 
 export default defineConfig({
   basePath: "/studio",
   name: "default",
   title: `${siteConfig.name} CMS`,
+  icon: StudioIcon,
   // A syntactically valid placeholder keeps the config importable before setup; the page shows setup steps instead.
   projectId: sanityConfigured ? projectId : "notconfigured",
   dataset,

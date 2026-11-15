@@ -1,12 +1,17 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { siteConfig } from "@/config/site";
 
 export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
   const c = siteConfig.colors;
+  const logo = siteConfig.logo.imageSrc
+    ? `data:image/svg+xml;base64,${(await readFile(join(process.cwd(), "public", siteConfig.logo.imageSrc))).toString("base64")}`
+    : null;
   return new ImageResponse(
     (
       <div
@@ -23,22 +28,26 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: 16,
-              background: `linear-gradient(135deg, ${c.primary}, ${c.secondary})`,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 22,
-              fontWeight: 700,
-              color: "white",
-            }}
-          >
-            {siteConfig.logo.monogram}
-          </div>
+          {logo ? (
+            <img src={logo} width={72} height={72} alt="" />
+          ) : (
+            <div
+              style={{
+                width: 56,
+                height: 56,
+                borderRadius: 16,
+                background: `linear-gradient(135deg, ${c.primary}, ${c.secondary})`,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 22,
+                fontWeight: 700,
+                color: "white",
+              }}
+            >
+              {siteConfig.logo.monogram}
+            </div>
+          )}
           <div style={{ fontSize: 30, fontWeight: 600 }}>{siteConfig.name}</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>

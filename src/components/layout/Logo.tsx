@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export function LogoMark({ className }: { className?: string }) {
   if (siteConfig.logo.imageSrc) {
-    return <Image src={siteConfig.logo.imageSrc} alt="" width={32} height={32} className={className} />;
+    return <Image src={siteConfig.logo.imageSrc} alt="" width={36} height={36} unoptimized priority className={cn("size-9 shrink-0", className)} />;
   }
   return (
     <span
