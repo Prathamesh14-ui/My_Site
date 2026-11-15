@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Automation Studio — Agency Website
 
-## Getting Started
+Premium, production-ready website for an AI automation & web development studio.
+Built with **Next.js 16 (App Router, Cache Components)**, **TypeScript**, **Tailwind CSS v4**, **Motion** and **Lucide**.
 
-First, run the development server:
+> "AI Automation Studio" is a temporary working name. Every brand detail is centralised — see *Rebranding*.
+
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # fill in what you need
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production: `npm run build && npm start`. Quality checks: `npx tsc --noEmit`, `npm run lint`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Rebranding (one file)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`src/config/site.ts` controls the business name, monogram/logo image, tagline, positioning, contact email,
+WhatsApp number, CTA labels, social links and **brand colours** (injected as CSS variables, so the whole design follows).
 
-## Learn More
+Before launch, replace the values marked `PLACEHOLDER`:
 
-To learn more about Next.js, take a look at the following resources:
+- `contact.email`, `contact.whatsapp.number` / `display`
+- `social.*` (empty values are hidden)
+- `src/app/icon.svg` (favicon) — and optionally `logo.imageSrc` for a real logo
+- `src/app/privacy/page.tsx` — have the privacy notice reviewed for your jurisdiction
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| What | Where |
+| --- | --- |
+| Services (3 categories, 21 services) | `src/content/services.ts` |
+| Case studies | `src/content/projects.ts` — list **only verified features**. `showClientName` controls client names; add real screenshots to `screenshots` to replace the labelled mockups |
+| FAQ, process, technologies, nav | `src/content/general.ts` |
+| Estimator pricing | `src/config/pricing.ts` |
 
-## Deploy on Vercel
+## Environment variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URLs, sitemap, Open Graph |
+| `ANTHROPIC_API_KEY` | Enables the **live AI** chatbot. Without it the chatbot runs in a clearly badged *scripted demo mode* |
+| `CHAT_MODEL` | Optional model override (default `claude-opus-5-5`) |
+| `RESEND_API_KEY`, `ENQUIRY_TO_EMAIL`, `ENQUIRY_FROM_EMAIL` | Enquiries by email via [Resend](https://resend.com) (verify your sending domain) |
+| `ENQUIRY_WEBHOOK_URL`, `ENQUIRY_WEBHOOK_SECRET` | Enquiries as JSON to a webhook — e.g. an **n8n Webhook node** (secret sent as `X-Webhook-Secret`) |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Configure **at least one** enquiry destination. If none is configured, or all configured destinations fail,
+the form shows an error with email/WhatsApp alternatives — it never shows a false success.
+
+## Interactive features
+
+- **Live AI chatbot demo** (`/api/chat`): streams Claude responses server-side with a server-side refusal fallback;
+  three scenarios (agency assistant, fictional clinic, fictional travel). API key never reaches the browser.
+- **Automation workflow visualiser**: three animated scenarios with step controls and execution log.
+- **Project estimator** (`/estimate`): builds an enquiry summary and hands it to the contact form.
+  Price ranges are **off** (`showPriceRanges: false`) and amounts are placeholders — set your own before enabling.
+  Indicative timelines in `weeks` are also placeholders to review.
+- **Enquiry system** (`/api/contact`): Zod validation (shared client/server), honeypot, rate limiting, loading/success/error states.
+
+## SEO
+
+Per-page titles, descriptions, canonicals, Open Graph/Twitter (generated OG image), `sitemap.xml`, `robots.txt`,
+JSON-LD (ProfessionalService, WebSite, BreadcrumbList, Service, FAQPage), semantic headings.
+
+## Deployment notes
+
+- Works on any Node host (Vercel recommended). Cache Components requires the Node.js runtime.
+- The rate limiter is in-memory (per instance). For multi-instance/serverless scale, swap `src/lib/rate-limit.ts` for a shared store (e.g. Upstash Redis).

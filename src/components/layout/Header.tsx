@@ -1,0 +1,136 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { navigation } from "@/content/general";
+import { siteConfig, whatsappLink } from "@/config/site";
+import { Logo } from "./Logo";
+import { ButtonLink } from "@/components/ui/Button";
+import { WhatsAppIcon } from "@/components/ui/Icon";
+import { cn } from "@/lib/utils";
+
+export function Header() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Lock scroll while the mobile menu is open; close on Escape.
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+
+  return (
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div
+        className={cn(
+          "transition-all duration-300",
+          scrolled || open ? "border-b border-white/[0.06] bg-bg/75 backdrop-blur-xl" : "border-b border-transparent",
+        )}
+      >
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          <Logo />
+
+          <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
+            {navigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={cn(
+                  "relative rounded-full px-3.5 py-2 text-sm transition-colors",
+                  isActive(item.href) ? "text-fg" : "text-muted hover:text-fg",
+                )}
+              >
+                {isActive(item.href) && (
+                  <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-full bg-white/[0.06]" transition={{ type: "spring", bounce: 0.2, duration: 0.5 }} />
+                )}
+                <span className="relative">{item.label}</span>
+              </Link>
+            ))}
+          </nav>
+
+          <div className="hidden md:block">
+            <ButtonLink href={siteConfig.cta.primary.href} size="md" className="h-10 px-4">
+              {siteConfig.cta.primary.label}
+            </ButtonLink>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="-mr-2 grid size-11 place-items-center rounded-full text-fg md:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
+      </div>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-bg/97 backdrop-blur-xl md:hidden"
+          >
+            <nav aria-label="Mobile" className="flex min-h-full flex-col px-4 pb-8 pt-6">
+              <ul className="flex flex-col">
+                {navigation.map((item, i) => (
+                  <motion.li
+                    key={item.href}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.04 * i }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      aria-current={isActive(item.href) ? "page" : undefined}
+                      className="flex items-center justify-between border-b border-white/[0.06] py-5 text-2xl font-medium tracking-tight"
+                    >
+                      <span className={isActive(item.href) ? "text-gradient" : "text-fg"}>{item.label}</span>
+                      <ArrowRight className="size-5 text-muted" aria-hidden="true" />
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+              <div className="mt-auto flex flex-col gap-3 pt-10">
+                <ButtonLink href={siteConfig.cta.primary.href} size="lg" arrow onClick={() => setOpen(false)}>
+                  {siteConfig.cta.primary.label}
+                </ButtonLink>
+                <ButtonLink href={whatsappLink()} variant="secondary" size="lg">
+                  <WhatsAppIcon size={18} /> Chat on WhatsApp
+                </ButtonLink>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
