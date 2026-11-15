@@ -1,9 +1,9 @@
-# AI Automation Studio — Agency Website
+# PS Automation Studio — Agency Website
 
 Premium, production-ready website for an AI automation & web development studio.
 Built with **Next.js 16 (App Router, Cache Components)**, **TypeScript**, **Tailwind CSS v4**, **Motion** and **Lucide**.
 
-> "AI Automation Studio" is a temporary working name. Every brand detail is centralised — see *Rebranding*.
+> Every brand detail (name, logo, colours, contact details) is centralised — see *Rebranding*.
 
 ## Quick start
 

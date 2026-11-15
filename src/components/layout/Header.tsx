@@ -84,7 +84,7 @@ export function Header() {
             </ActivePath>
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <ButtonLink href={siteConfig.cta.primary.href} size="md" className="h-10 px-4">
               {siteConfig.cta.primary.label}
             </ButtonLink>

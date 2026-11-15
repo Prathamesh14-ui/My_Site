@@ -10,13 +10,12 @@
  */
 
 export const siteConfig = {
-  /** Temporary working name — final name not decided yet. */
-  name: "AI Automation Studio",
+  name: "PS Automation Studio",
   /** Short form used in tight spaces (mobile header, OG image). */
-  shortName: "AI Automation Studio",
+  shortName: "PS Automation",
   /** Logo: monogram letters for the built-in mark, or point `imageSrc` at /public/logo.svg */
   logo: {
-    monogram: "AS",
+    monogram: "PS",
     imageSrc: null as string | null,
   },
   tagline: "Intelligent AI. Smarter Automation. Digital Growth.",

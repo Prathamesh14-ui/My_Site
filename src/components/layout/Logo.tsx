@@ -26,7 +26,7 @@ export function Logo({ className }: { className?: string }) {
   return (
     <Link href="/" className={cn("flex items-center gap-2.5 font-semibold tracking-tight text-fg", className)} aria-label={`${siteConfig.name} — home`}>
       <LogoMark />
-      <span className="text-[0.95rem]">{siteConfig.name}</span>
+      <span className="whitespace-nowrap text-[0.95rem]">{siteConfig.name}</span>
     </Link>
   );
 }
