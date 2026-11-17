@@ -22,7 +22,7 @@ export function ProblemSolution({
   return (
     <div className="grid gap-5 lg:grid-cols-2">
       <Reveal className="card h-full p-7 sm:p-9">
-        <p className="font-mono text-[11px] uppercase tracking-wider text-danger/80">The business problem</p>
+        <p className="label text-danger">The business problem</p>
         <h2 className="mt-4 text-2xl font-semibold tracking-tight text-fg">{problemTitle}</h2>
         <ul className="mt-6 space-y-4">
           {problems.map((p) => (
@@ -38,7 +38,7 @@ export function ProblemSolution({
       <Reveal delay={0.08} className="card relative h-full overflow-hidden border-primary/30 p-7 sm:p-9">
         <div aria-hidden="true" className="glow-primary absolute -right-24 -top-24 size-72 opacity-60 blur-2xl" />
         <div className="relative">
-          <p className="font-mono text-[11px] uppercase tracking-wider text-primary-bright">Our solution</p>
+          <p className="label text-primary-bright">Our solution</p>
           <h2 className="mt-4 text-2xl font-semibold tracking-tight text-fg">{solutionTitle}</h2>
           {solutionBody && <p className="mt-4 text-[15px] leading-relaxed text-muted">{solutionBody}</p>}
           <ul className="mt-6 space-y-4">
@@ -63,7 +63,7 @@ export function CapabilityGrid({ items }: { items: string[] }) {
       {items.map((c, i) => (
         <li key={c}>
           <Reveal delay={(i % 4) * 0.05} className="flex h-full items-start gap-3 rounded-2xl border border-ink/[0.07] bg-surface/60 p-5">
-            <span className="font-mono text-xs text-primary-bright">{String(i + 1).padStart(2, "0")}</span>
+            <span className="label tabular-nums text-primary-bright">{String(i + 1).padStart(2, "0")}</span>
             <span className="text-sm leading-relaxed text-fg/90">{c}</span>
           </Reveal>
         </li>
@@ -106,7 +106,7 @@ export function UseCases({ items }: { items: { industry: string; title: string; 
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((u, i) => (
         <Reveal key={u.title} delay={i * 0.05} className="card h-full p-6">
-          <p className="font-mono text-[11px] uppercase tracking-wider text-secondary-bright">{u.industry}</p>
+          <p className="label text-secondary-bright">{u.industry}</p>
           <h3 className="mt-3 font-medium text-fg">{u.title}</h3>
           <p className="mt-2 text-sm leading-relaxed text-muted">{u.body}</p>
         </Reveal>

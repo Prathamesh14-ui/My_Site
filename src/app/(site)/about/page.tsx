@@ -36,11 +36,11 @@ export default async function AboutPage() {
         description={`${siteConfig.name} is a technology studio based in ${siteConfig.location.city}, ${siteConfig.location.country}. ${siteConfig.positioning}`}
       />
 
-      <Section labelledBy="mission-heading" className="pt-0 sm:pt-0">
+      <Section labelledBy="mission-heading" className="pt-0 sm:pt-0 lg:pt-0">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr]">
           <Reveal>
             <p className="eyebrow">Our mission</p>
-            <h2 id="mission-heading" className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-fg sm:text-4xl">
+            <h2 id="mission-heading" className="mt-3 text-2xl font-semibold leading-snug tracking-tight text-fg sm:text-3xl">
               Make intelligent automation accessible to every growing business.
             </h2>
           </Reveal>
@@ -55,7 +55,7 @@ export default async function AboutPage() {
         </div>
       </Section>
 
-      <Section labelledBy="cap-heading" className="border-y border-ink/[0.05] bg-surface/30">
+      <Section labelledBy="cap-heading" className="border-y border-line bg-surface">
         <SectionHeading id="cap-heading" eyebrow="Technical capabilities" title="Three disciplines, deeply integrated" />
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {serviceCategories.map((c, i) => (
@@ -80,7 +80,7 @@ export default async function AboutPage() {
           {processSteps.map((s, i) => (
             <li key={s.title}>
               <Reveal delay={i * 0.05} className="card h-full p-6">
-                <span className="font-mono text-xs text-primary-bright">0{i + 1}</span>
+                <span className="label tabular-nums text-primary-bright">0{i + 1}</span>
                 <h3 className="mt-3 font-medium text-fg">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{s.body}</p>
               </Reveal>
@@ -89,7 +89,7 @@ export default async function AboutPage() {
         </ol>
       </Section>
 
-      <Section labelledBy="commit-heading" className="border-y border-ink/[0.05] bg-surface/30">
+      <Section labelledBy="commit-heading" className="border-y border-line bg-surface">
         <SectionHeading id="commit-heading" eyebrow="Our commitment" title="Practical AI, implemented responsibly" />
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {commitments.map((c, i) => (

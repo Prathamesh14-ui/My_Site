@@ -26,8 +26,8 @@ export function themeCss(): string {
   const { light, ...dark } = siteConfig.colors;
   return [
     // Page-level defaults (dark) + effects
-    `:root{${palette(dark)}${darkTones}--glow-a:35%;--glow-b:30%;--shadow-strong:rgba(0,0,0,.85);--shadow-soft:rgba(0,0,0,.5)}`,
-    `:root[data-theme="light"]{${palette(light)}${lightTones}--glow-a:16%;--glow-b:13%;--shadow-strong:rgba(35,30,80,.20);--shadow-soft:rgba(35,30,80,.10)}`,
+    `:root{${palette(dark)}${darkTones}--glow-a:16%;--glow-b:12%;--shadow-strong:rgba(0,0,0,.7);--shadow-soft:rgba(0,0,0,.35)}`,
+    `:root[data-theme="light"]{${palette(light)}${lightTones}--glow-a:8%;--glow-b:6%;--shadow-strong:rgba(35,30,80,.20);--shadow-soft:rgba(35,30,80,.10)}`,
     // Dark islands inside a light page (illustrations, mockups)
     `:root[data-theme="light"] [data-theme="dark"]{${palette(dark)}${darkTones}color:var(--brand-fg)}`,
   ].join("");

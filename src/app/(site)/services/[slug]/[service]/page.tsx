@@ -74,7 +74,7 @@ async function SubServicePageContent({ params }: Pick<PageProps<"/services/[slug
         </div>
       </PageHero>
 
-      <Section className="pt-4 sm:pt-8">
+      <Section className="pt-4 sm:pt-8 lg:pt-8">
         <ProblemSolution
           problemTitle="The challenge"
           problems={[s.problem, ...category.problem.points.slice(0, 2)]}
@@ -84,7 +84,7 @@ async function SubServicePageContent({ params }: Pick<PageProps<"/services/[slug
         />
       </Section>
 
-      <Section labelledBy="cap-heading" className="pt-0 sm:pt-0">
+      <Section labelledBy="cap-heading" className="pt-0 sm:pt-0 lg:pt-0">
         <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
           <div>
             <SectionHeading id="cap-heading" eyebrow="Key capabilities" title="What's included" />
@@ -111,13 +111,13 @@ async function SubServicePageContent({ params }: Pick<PageProps<"/services/[slug
         </div>
       </Section>
 
-      <Section labelledBy="uses-heading" className="border-y border-ink/[0.05] bg-surface/30">
+      <Section labelledBy="uses-heading" className="border-y border-line bg-surface">
         <SectionHeading id="uses-heading" eyebrow="Real-world use cases" title="How businesses use it" />
         <ul className="mt-12 grid gap-4 md:grid-cols-3">
           {s.useCases.map((u, i) => (
             <li key={u}>
               <Reveal delay={i * 0.06} className="card flex h-full items-start gap-4 p-6">
-                <span className="font-mono text-sm text-primary-bright">0{i + 1}</span>
+                <span className="label tabular-nums text-primary-bright">0{i + 1}</span>
                 <span className="text-fg/90">{u}</span>
               </Reveal>
             </li>
@@ -132,14 +132,14 @@ async function SubServicePageContent({ params }: Pick<PageProps<"/services/[slug
         </div>
       </Section>
 
-      <Section labelledBy="cat-cap-heading" className="pt-0 sm:pt-0">
+      <Section labelledBy="cat-cap-heading" className="pt-0 sm:pt-0 lg:pt-0">
         <SectionHeading id="cat-cap-heading" eyebrow={category.title} title="Backed by our wider capabilities" />
         <div className="mt-10">
           <CapabilityGrid items={category.capabilities} />
         </div>
       </Section>
 
-      <Section labelledBy="related-heading" className="border-t border-ink/[0.05] pt-16 sm:pt-20">
+      <Section labelledBy="related-heading" className="border-t border-line pt-16 sm:pt-20 lg:pt-20">
         <h2 id="related-heading" className="text-xl font-semibold text-fg">Related {category.shortTitle.toLowerCase()} services</h2>
         <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {siblings.map((x) => (

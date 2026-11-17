@@ -6,7 +6,7 @@ export function MockupLabel({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border border-warning/30 bg-[color-mix(in_oklab,var(--tone-warning)_12%,var(--brand-surface))] px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-warning",
+        "label inline-flex items-center gap-1.5 rounded-md border border-warning/30 bg-[color-mix(in_oklab,var(--tone-warning)_12%,var(--brand-surface))] px-2 py-1 text-[10px] text-warning",
         className,
       )}
     >

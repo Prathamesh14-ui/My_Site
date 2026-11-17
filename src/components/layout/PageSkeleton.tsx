@@ -4,7 +4,6 @@ import { Container } from "@/components/ui/Section";
 export function PageSkeleton() {
   return (
     <section aria-busy="true" aria-label="Loading" className="relative overflow-hidden pb-16 pt-32 sm:pb-20 sm:pt-40">
-      <div aria-hidden="true" className="grid-bg pointer-events-none absolute inset-0" />
       <Container className="relative">
         <div className="h-3 w-40 animate-pulse rounded bg-ink/[0.06]" />
         <div className="mt-10 h-3 w-28 animate-pulse rounded bg-primary/20" />

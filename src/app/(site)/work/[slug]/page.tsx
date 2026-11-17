@@ -78,10 +78,9 @@ async function CaseStudyPageContent({ params }: Pick<PageProps<"/work/[slug]">, 
       </PageHero>
 
       {/* Visual */}
-      <Section className="pt-0 sm:pt-0">
+      <Section className="pt-0 sm:pt-0 lg:pt-0">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] border border-ink/[0.07] bg-[radial-gradient(70%_90%_at_50%_0%,color-mix(in_oklab,var(--brand-primary)_22%,transparent),transparent),var(--brand-surface)] px-5 py-12 sm:px-12 sm:py-16">
-            <div aria-hidden="true" className="grid-bg absolute inset-0 opacity-60" />
+          <div className="relative overflow-hidden rounded-2xl border border-line bg-[linear-gradient(180deg,color-mix(in_oklab,var(--brand-primary)_7%,var(--brand-surface-raised)),var(--brand-surface))] px-5 py-10 sm:px-10 sm:py-14">
             {p.screenshots.length > 0 ? (
               <ScreenshotGallery shots={p.screenshots} url={p.liveUrl} />
             ) : (
@@ -99,7 +98,7 @@ async function CaseStudyPageContent({ params }: Pick<PageProps<"/work/[slug]">, 
         </Reveal>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section className="pt-0 sm:pt-0 lg:pt-0">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <Reveal>
             <h2 className="text-2xl font-semibold tracking-tight text-fg">The challenge</h2>
@@ -137,13 +136,13 @@ async function CaseStudyPageContent({ params }: Pick<PageProps<"/work/[slug]">, 
       </Section>
 
       {p.flow && (
-        <Section labelledBy="flow-heading" className="border-y border-ink/[0.05] bg-surface/30">
+        <Section labelledBy="flow-heading" className="border-y border-line bg-surface">
           <SectionHeading id="flow-heading" eyebrow="How it works" title="The flow, step by step" />
           <ol className="mt-12 flex flex-col gap-3 lg:flex-row lg:items-stretch lg:gap-8">
             {p.flow.map((step, i) => (
               <li key={step} className="relative flex flex-col items-center gap-3 lg:flex-1 lg:basis-0">
                 <Reveal delay={i * 0.05} className="w-full rounded-2xl border border-ink/[0.08] bg-bg/70 p-4 lg:h-full">
-                  <span className="font-mono text-xs text-primary-bright">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="label tabular-nums text-primary-bright">{String(i + 1).padStart(2, "0")}</span>
                   <p className="mt-2 text-sm font-medium leading-snug text-fg">{step}</p>
                 </Reveal>
                 {i < p.flow!.length - 1 && (
@@ -174,7 +173,7 @@ async function CaseStudyPageContent({ params }: Pick<PageProps<"/work/[slug]">, 
         </Section>
       )}
 
-      <Section labelledBy="more-heading" className="pt-0 sm:pt-0">
+      <Section labelledBy="more-heading" className="pt-0 sm:pt-0 lg:pt-0">
         <div className="flex items-end justify-between gap-4">
           <h2 id="more-heading" className="text-2xl font-semibold tracking-tight text-fg">More case studies</h2>
           <Link href="/work" className="text-sm text-primary-bright hover:text-fg">View all</Link>

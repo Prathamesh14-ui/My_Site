@@ -118,7 +118,7 @@ export function WorkflowVisualizer() {
 
       {/* Nodes */}
       <div className="relative px-4 py-8 sm:px-6 lg:py-12">
-        <div aria-hidden="true" className="grid-bg pointer-events-none absolute inset-0 opacity-50" />
+        <div aria-hidden="true" className="grid-bg pointer-events-none absolute inset-0 opacity-30" />
         <ol className="relative flex flex-col gap-0 lg:flex-row lg:items-stretch">
           {steps.map((s, i) => {
             const state = i < active ? "done" : i === active ? "active" : "idle";

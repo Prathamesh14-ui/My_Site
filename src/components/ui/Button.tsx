@@ -7,19 +7,19 @@ type Variant = "primary" | "secondary" | "ghost";
 type Size = "md" | "lg";
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium transition-all duration-300 disabled:pointer-events-none disabled:opacity-60";
+  "group relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-all duration-200 disabled:pointer-events-none disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
   primary:
-    "text-white bg-[linear-gradient(110deg,var(--brand-primary),color-mix(in_oklab,var(--brand-primary)_55%,var(--brand-secondary)))] shadow-[0_0_0_1px_color-mix(in_oklab,white_14%,transparent)_inset,0_8px_30px_-8px_color-mix(in_oklab,var(--brand-primary)_70%,transparent)] hover:shadow-[0_0_0_1px_color-mix(in_oklab,white_22%,transparent)_inset,0_12px_40px_-8px_color-mix(in_oklab,var(--brand-primary)_90%,transparent)] hover:-translate-y-0.5",
+    "text-white bg-primary shadow-[0_1px_2px_var(--shadow-soft),0_6px_16px_-8px_color-mix(in_oklab,var(--brand-primary)_70%,transparent)] hover:bg-[color-mix(in_oklab,var(--brand-primary)_88%,black)] hover:shadow-[0_1px_2px_var(--shadow-soft),0_10px_24px_-10px_color-mix(in_oklab,var(--brand-primary)_80%,transparent)]",
   secondary:
-    "text-fg bg-ink/[0.04] border border-ink/10 hover:bg-ink/[0.08] hover:border-ink/20",
+    "text-fg bg-surface border border-line hover:border-ink/25 hover:bg-raised",
   ghost: "text-fg/80 hover:text-fg",
 };
 
 const sizes: Record<Size, string> = {
-  md: "h-11 px-5 text-sm",
-  lg: "h-13 px-7 text-[0.95rem]",
+  md: "h-10 px-4 text-sm",
+  lg: "h-12 px-6 text-[0.95rem]",
 };
 
 export function buttonClasses(variant: Variant = "primary", size: Size = "md", className?: string) {

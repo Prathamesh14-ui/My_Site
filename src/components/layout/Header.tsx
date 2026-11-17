@@ -58,13 +58,15 @@ export function Header() {
       <div
         className={cn(
           "transition-all duration-300",
-          scrolled || open ? "border-b border-ink/[0.06] bg-bg/75 backdrop-blur-xl" : "border-b border-transparent",
+          scrolled || open
+            ? "border-b border-line bg-bg/90 shadow-[0_1px_12px_-6px_var(--shadow-soft)] backdrop-blur-xl"
+            : "border-b border-line/60 bg-bg/70 backdrop-blur-md",
         )}
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
           <Logo />
 
-          <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
+          <nav aria-label="Main" className="hidden h-full items-center gap-1 md:flex">
             <ActivePath>
             {(isActive) => navigation.map((item) => (
               <Link
@@ -72,12 +74,12 @@ export function Header() {
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
-                  "relative rounded-full px-3.5 py-2 text-sm transition-colors",
+                  "relative flex h-full items-center px-3 text-sm font-medium transition-colors",
                   isActive(item.href) ? "text-fg" : "text-muted hover:text-fg",
                 )}
               >
                 {isActive(item.href) && (
-                  <motion.span layoutId="nav-pill" className="absolute inset-0 rounded-full bg-ink/[0.06]" transition={{ type: "spring", bounce: 0.2, duration: 0.5 }} />
+                  <motion.span layoutId="nav-underline" className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-primary" transition={{ type: "spring", bounce: 0.15, duration: 0.45 }} />
                 )}
                 <span className="relative">{item.label}</span>
               </Link>

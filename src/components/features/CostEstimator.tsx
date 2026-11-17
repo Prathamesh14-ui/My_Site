@@ -245,7 +245,7 @@ export function CostEstimator() {
 function StepTitle({ n, title, subtitle }: { n: number; title: string; subtitle?: string }) {
   return (
     <div className="flex items-start gap-4">
-      <span className="grid size-8 shrink-0 place-items-center rounded-full border border-ink/10 font-mono text-xs text-primary-bright">{n}</span>
+      <span className="grid size-8 shrink-0 place-items-center rounded-full border border-ink/10 text-xs font-semibold tabular-nums text-primary-bright">{n}</span>
       <div>
         <h2 className="text-lg font-semibold text-fg">{title}</h2>
         {subtitle && <p className="mt-0.5 text-sm text-muted">{subtitle}</p>}

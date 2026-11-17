@@ -55,7 +55,13 @@ export function ScreenshotGallery({ shots, url }: { shots: Shot[]; url?: string 
         <div
           className={cn(
             "mx-auto grid max-w-4xl items-start justify-center gap-5 sm:gap-8",
-            phone.length === 1 ? "max-w-[300px]" : phone.length === 2 ? "grid-cols-2 sm:max-w-xl" : "grid-cols-2 sm:grid-cols-3",
+            phone.length === 1
+              ? "max-w-[300px]"
+              : phone.length === 2
+                ? "grid-cols-2 sm:max-w-xl"
+                : phone.length === 4
+                  ? "max-w-5xl grid-cols-2 lg:grid-cols-4"
+                  : "grid-cols-2 sm:grid-cols-3",
           )}
         >
           {phone.map((s) => (

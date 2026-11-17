@@ -23,11 +23,11 @@ export function TrustIntro() {
     { title: "Owned by you", body: "Documented code and workflows, deployed on accounts you control." },
   ];
   return (
-    <Section labelledBy="intro-title" className="border-y border-ink/[0.05] bg-surface/30 py-16 sm:py-20">
+    <Section labelledBy="intro-title" className="border-y border-line bg-surface py-16 sm:py-20">
       <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-end">
         <Reveal>
           <p className="eyebrow mb-4">A technology partner, not just a chatbot vendor</p>
-          <h2 id="intro-title" className="text-2xl font-medium leading-snug tracking-tight text-fg sm:text-[2.1rem]">
+          <h2 id="intro-title" className="text-2xl font-medium leading-snug tracking-tight text-fg sm:text-[1.75rem]">
             We build intelligent AI agents, automate business operations and develop modern websites —{" "}
             <span className="text-muted">so your team spends less time on repetitive work and more time growing the business.</span>
           </h2>
@@ -48,7 +48,7 @@ export function TrustIntro() {
           </ul>
         </Reveal>
       </div>
-      <Reveal delay={0.15} className="mt-14">
+      <Reveal delay={0.15} className="mt-12">
         <p className="mb-4 text-xs uppercase tracking-[0.18em] text-muted">Built for</p>
         <ul className="flex flex-wrap gap-2.5">
           {industries.map((i) => (
@@ -77,17 +77,17 @@ export async function ServicesOverview() {
         }
         description="Most growth problems sit between channels and tools. We solve them with AI, automation and web development working together."
       />
-      <div className="mt-14 grid gap-5 lg:grid-cols-3">
+      <div className="mt-12 grid gap-5 lg:grid-cols-3">
         {serviceCategories.map((cat, i) => (
           <Reveal key={cat.slug} delay={i * 0.08}>
-            <article className="card card-hover group flex h-full flex-col p-7 sm:p-8">
+            <article className="card card-hover group flex h-full flex-col p-6 sm:p-7">
               <div className="flex items-center justify-between">
-                <span className="grid size-12 place-items-center rounded-2xl border border-ink/10 bg-[linear-gradient(135deg,color-mix(in_oklab,var(--brand-primary)_25%,transparent),color-mix(in_oklab,var(--brand-secondary)_18%,transparent))] text-fg">
+                <span className="grid size-11 place-items-center rounded-xl border border-primary/20 bg-primary/10 text-primary-bright">
                   <Icon name={cat.icon} size={22} />
                 </span>
-                <span className="font-mono text-xs text-muted">0{i + 1}</span>
+                <span className="label tabular-nums text-muted">0{i + 1}</span>
               </div>
-              <h3 className="mt-7 text-2xl font-semibold tracking-tight text-fg">{cat.title}</h3>
+              <h3 className="mt-6 text-xl font-semibold tracking-tight text-fg">{cat.title}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-muted">{cat.tagline}</p>
               <ul className="mt-6 space-y-2.5 border-t border-ink/[0.06] pt-6">
                 {cat.services.map((s) => (
@@ -208,7 +208,7 @@ export async function FeaturedWeb() {
 /* 5 ─ Interactive automation showcase */
 export function AutomationShowcase() {
   return (
-    <Section id="automation" labelledBy="automation-title" className="border-y border-ink/[0.05] bg-surface/30">
+    <Section id="automation" labelledBy="automation-title" className="border-y border-line bg-surface">
       <SectionHeading
         id="automation-title"
         align="center"
@@ -220,7 +220,7 @@ export function AutomationShowcase() {
         }
         description="Pick a scenario and press play. Each step shows what an automated system does behind the scenes — from the first message to the final confirmation."
       />
-      <Reveal delay={0.1} className="mt-14">
+      <Reveal delay={0.1} className="mt-12">
         <WorkflowVisualizer />
       </Reveal>
     </Section>
@@ -247,7 +247,7 @@ export async function FeaturedProjects() {
           All case studies
         </ButtonLink>
       </div>
-      <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((p, i) => (
           <Reveal key={p.slug} delay={i * 0.08}>
             <ProjectCard project={p} />
@@ -258,15 +258,15 @@ export async function FeaturedProjects() {
   );
 }
 
-export function ProjectCard({ project: p }: { project: Project }) {
+export function ProjectCard({ project: p, large = false }: { project: Project; large?: boolean }) {
   // Card thumbnail: prefer a wide (desktop) screenshot, otherwise the first one.
   const shot = p.screenshots.find((s) => !isPortrait(s)) ?? p.screenshots[0];
   const portrait = shot ? isPortrait(shot) : false;
   return (
     <article className="card card-hover group relative flex h-full flex-col overflow-hidden">
-      <div className="relative flex h-72 items-start justify-center overflow-hidden border-b border-ink/[0.06] bg-[radial-gradient(80%_80%_at_50%_0%,color-mix(in_oklab,var(--brand-primary)_18%,transparent),transparent)] px-6 pt-14">
+      <div className={cn("relative flex h-64 items-start justify-center overflow-hidden border-b border-line bg-[linear-gradient(180deg,color-mix(in_oklab,var(--brand-primary)_8%,var(--brand-surface-raised)),var(--brand-surface))] px-6 pt-12 sm:h-72 sm:pt-14", large && "lg:h-80 lg:px-12")}>
         {shot ? (
-          <div className={cn("w-full transition-transform duration-500 group-hover:-translate-y-2", portrait && "max-w-[200px]")}>
+          <div className={cn("w-full transition-transform duration-500 group-hover:-translate-y-2", portrait && "max-w-[200px]", large && !portrait && "max-w-xl")}>
             {portrait ? (
               <PhoneFrame shot={shot} sizes="200px" />
             ) : (
@@ -283,7 +283,7 @@ export function ProjectCard({ project: p }: { project: Project }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <p className="font-mono text-[11px] uppercase tracking-wider text-muted">
+        <p className="label text-muted">
           {p.category} · {p.industry}
         </p>
         <h3 className="mt-3 text-xl font-semibold tracking-tight text-fg">
@@ -317,7 +317,7 @@ export function WhyUs() {
           </>
         }
       />
-      <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-ink/[0.06] bg-ink/[0.06] sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {whyUs.map((w, i) => (
           <Reveal key={w.title} delay={(i % 3) * 0.06} className="bg-bg">
             <div className="group h-full p-7 transition-colors duration-300 hover:bg-surface sm:p-8">
@@ -335,7 +335,7 @@ export function WhyUs() {
 /* 8 ─ Development process */
 export function Process() {
   return (
-    <Section id="process" labelledBy="process-title" className="border-y border-ink/[0.05] bg-surface/30">
+    <Section id="process" labelledBy="process-title" className="border-y border-line bg-surface">
       <SectionHeading
         id="process-title"
         eyebrow="How we work"
@@ -345,17 +345,17 @@ export function Process() {
           </>
         }
       />
-      <div className="relative mt-14">
+      <div className="relative mt-12">
       <div aria-hidden="true" className="absolute left-0 right-0 top-[27px] hidden h-px bg-[linear-gradient(90deg,transparent,var(--brand-primary),var(--brand-secondary),transparent)] opacity-40 md:block" />
       <ol className="relative grid gap-8 md:grid-cols-5 md:gap-5">
         {processSteps.map((s, i) => (
           <li key={s.title}>
             <Reveal delay={i * 0.07} className="relative flex gap-5 md:block">
-              <span className="relative z-10 grid size-14 shrink-0 place-items-center rounded-2xl border border-ink/10 bg-raised text-primary-bright">
+              <span className="relative z-10 grid size-12 shrink-0 place-items-center rounded-xl border border-line bg-surface text-primary-bright shadow-[0_1px_2px_var(--shadow-soft)]">
                 <Icon name={s.icon} size={20} />
               </span>
               <div className="md:mt-6">
-                <p className="font-mono text-xs text-muted">Step {i + 1}</p>
+                <p className="text-xs font-semibold text-muted">Step {i + 1}</p>
                 <h3 className="mt-1 text-lg font-medium text-fg">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{s.body}</p>
                 <p className="mt-3 text-xs text-secondary-bright">→ {s.deliverable}</p>
@@ -454,14 +454,13 @@ export function ContactCTA({
   description?: string;
 }) {
   return (
-    <section aria-labelledby="cta-title" className="relative py-20 sm:py-28">
+    <section aria-labelledby="cta-title" className="relative py-16 sm:py-20">
       <Container>
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] border border-ink/10 bg-surface px-6 py-16 text-center sm:px-12 sm:py-20">
-            <div aria-hidden="true" className="grid-bg absolute inset-0 opacity-60" />
-            <div aria-hidden="true" className="glow-primary absolute -top-40 left-1/2 h-[420px] w-[720px] -translate-x-1/2 opacity-80 blur-3xl" />
+          <div className="relative overflow-hidden rounded-2xl border border-line bg-[linear-gradient(135deg,color-mix(in_oklab,var(--brand-primary)_10%,var(--brand-surface)),var(--brand-surface)_60%,color-mix(in_oklab,var(--brand-secondary)_6%,var(--brand-surface)))] px-6 py-14 text-center sm:px-12 sm:py-16">
+            <div aria-hidden="true" className="glow-primary absolute -top-40 left-1/2 h-[380px] w-[680px] -translate-x-1/2 opacity-60 blur-3xl" />
             <div className="relative mx-auto max-w-2xl">
-              <h2 id="cta-title" className="text-3xl font-semibold leading-[1.1] tracking-tight text-fg sm:text-5xl">
+              <h2 id="cta-title" className="text-[1.75rem] font-semibold leading-[1.15] tracking-tight text-fg sm:text-4xl">
                 {title}
               </h2>
               <p className="mt-5 text-base text-muted sm:text-lg">{description}</p>

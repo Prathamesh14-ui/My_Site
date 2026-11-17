@@ -71,7 +71,7 @@ async function ServiceCategoryPageContent({ params }: Pick<PageProps<"/services/
       </PageHero>
 
       {/* Intro + visual */}
-      <Section labelledBy="intro-heading" className="pt-4 sm:pt-8">
+      <Section labelledBy="intro-heading" className="pt-4 sm:pt-8 lg:pt-8">
         <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
           <SectionHeading id="intro-heading" eyebrow="Introduction" title="What this service does for you" description={cat.intro} />
           <Reveal delay={0.1} className="mx-auto w-full max-w-[540px]">
@@ -80,7 +80,7 @@ async function ServiceCategoryPageContent({ params }: Pick<PageProps<"/services/
         </div>
       </Section>
 
-      <Section className="pt-0 sm:pt-0">
+      <Section className="pt-0 sm:pt-0 lg:pt-0">
         <ProblemSolution
           problemTitle={cat.problem.title}
           problems={cat.problem.points}
@@ -90,7 +90,7 @@ async function ServiceCategoryPageContent({ params }: Pick<PageProps<"/services/
         />
       </Section>
 
-      <Section labelledBy="services-heading" className="border-y border-ink/[0.05] bg-surface/30">
+      <Section labelledBy="services-heading" className="border-y border-line bg-surface">
         <SectionHeading id="services-heading" eyebrow="Services" title={`${cat.shortTitle} services`} description="Each service starts from a business problem and ends with a working system." />
         <div className="mt-12">
           <SubServiceGrid category={cat} />
@@ -105,7 +105,7 @@ async function ServiceCategoryPageContent({ params }: Pick<PageProps<"/services/
       </Section>
 
       {cat.slug === "ai-solutions" && (
-        <Section labelledBy="demo-heading" className="pt-0 sm:pt-0">
+        <Section labelledBy="demo-heading" className="pt-0 sm:pt-0 lg:pt-0">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
             <SectionHeading id="demo-heading" eyebrow="Try it" title="Experience an AI assistant" description="Switch between our own assistant and two fictional business scenarios. The badge always shows whether replies come from a live AI model or a scripted demo." />
             <Reveal delay={0.1}>
@@ -115,7 +115,7 @@ async function ServiceCategoryPageContent({ params }: Pick<PageProps<"/services/
         </Section>
       )}
       {cat.slug === "business-automation" && (
-        <Section labelledBy="demo-heading" className="pt-0 sm:pt-0">
+        <Section labelledBy="demo-heading" className="pt-0 sm:pt-0 lg:pt-0">
           <SectionHeading id="demo-heading" eyebrow="Try it" title="See an automated workflow in action" />
           <Reveal delay={0.1} className="mt-12">
             <WorkflowVisualizer />
@@ -123,7 +123,7 @@ async function ServiceCategoryPageContent({ params }: Pick<PageProps<"/services/
         </Section>
       )}
 
-      <Section labelledBy="uses-heading" className="border-y border-ink/[0.05] bg-surface/30">
+      <Section labelledBy="uses-heading" className="border-y border-line bg-surface">
         <SectionHeading id="uses-heading" eyebrow="Real-world use cases" title="Where this makes a difference" />
         <div className="mt-12">
           <UseCases items={cat.useCases} />
@@ -138,7 +138,7 @@ async function ServiceCategoryPageContent({ params }: Pick<PageProps<"/services/
       </Section>
 
       {related.length > 0 && (
-        <Section labelledBy="related-heading" className="pt-0 sm:pt-0">
+        <Section labelledBy="related-heading" className="pt-0 sm:pt-0 lg:pt-0">
           <SectionHeading id="related-heading" eyebrow="Related work" title="Built by our team" />
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {related.map((p) => (

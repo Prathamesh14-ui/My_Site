@@ -23,7 +23,7 @@ export default function EstimatePage() {
         }
         description="Select what you need and we'll build an indicative project summary you can send with your enquiry. It's a starting point for the conversation, not a final quote."
       />
-      <Section className="pt-0 sm:pt-0">
+      <Section className="pt-0 sm:pt-0 lg:pt-0">
         <CostEstimator />
       </Section>
     </>

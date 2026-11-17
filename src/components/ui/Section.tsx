@@ -18,7 +18,7 @@ export function Section({
   labelledBy?: string;
 }) {
   return (
-    <section id={id} aria-labelledby={labelledBy} className={cn("relative py-20 sm:py-28", className)}>
+    <section id={id} aria-labelledby={labelledBy} className={cn("relative py-14 sm:py-18 lg:py-20", className)}>
       <Container>{children}</Container>
     </section>
   );
@@ -43,17 +43,17 @@ export function SectionHeading({
 }) {
   return (
     <Reveal className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
-      {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
+      {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
       <As
         id={id}
         className={cn(
           "font-semibold tracking-tight text-fg",
-          As === "h1" ? "text-4xl leading-[1.05] sm:text-6xl" : "text-3xl leading-[1.1] sm:text-5xl",
+          As === "h1" ? "text-4xl leading-[1.08] sm:text-5xl" : "text-[1.75rem] leading-[1.15] sm:text-4xl lg:text-[2.5rem]",
         )}
       >
         {title}
       </As>
-      {description && <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">{description}</p>}
+      {description && <p className="mt-4 text-base leading-relaxed text-muted sm:text-[1.0625rem]">{description}</p>}
     </Reveal>
   );
 }
@@ -62,7 +62,7 @@ export function Badge({ children, className }: { children: ReactNode; className?
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-ink/[0.04] px-3 py-1 text-xs font-medium text-fg/80",
+        "inline-flex items-center gap-1.5 rounded-md border border-line bg-raised px-2.5 py-1 text-xs font-medium text-fg/80",
         className,
       )}
     >

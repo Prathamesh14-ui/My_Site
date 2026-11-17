@@ -46,7 +46,7 @@ export default async function ServicesPage() {
       </PageHero>
 
       {serviceCategories.map((cat, i) => (
-        <Section key={cat.slug} id={cat.slug} labelledBy={`${cat.slug}-title`} className={i % 2 === 1 ? "border-y border-ink/[0.05] bg-surface/30" : ""}>
+        <Section key={cat.slug} id={cat.slug} labelledBy={`${cat.slug}-title`} className={i % 2 === 1 ? "border-y border-line bg-surface" : ""}>
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <SectionHeading id={`${cat.slug}-title`} eyebrow={`0${i + 1} · ${cat.eyebrow}`} title={cat.title} description={cat.intro} />
             <Reveal className="flex shrink-0 flex-wrap gap-3">

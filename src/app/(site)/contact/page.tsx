@@ -28,7 +28,7 @@ export default async function ContactPage() {
         }
         description="Share a few details and we'll come back with thoughts, questions and a suggested next step. The first consultation is free."
       />
-      <Section className="pt-0 sm:pt-0">
+      <Section className="pt-0 sm:pt-0 lg:pt-0">
         <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:items-start">
           <Reveal>
             <ContactForm serviceOptions={serviceOptions} />

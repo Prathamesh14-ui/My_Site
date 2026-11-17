@@ -14,7 +14,7 @@ export default function PrivacyPage() {
   return (
     <>
       <PageHero crumbs={[{ name: "Privacy", path: "/privacy" }]} title="Privacy notice" description="How we handle the information you share with us through this website." />
-      <Section className="pt-0 sm:pt-0">
+      <Section className="pt-0 sm:pt-0 lg:pt-0">
         <div className="prose-body max-w-3xl space-y-10 text-[15px] leading-relaxed text-muted">
           <div>
             <h2 className="mb-3 text-xl font-semibold text-fg">What we collect</h2>
