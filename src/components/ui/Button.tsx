@@ -3,18 +3,19 @@ import type { ComponentProps, ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "ghost" | "inverse";
 type Size = "md" | "lg";
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-all duration-200 disabled:pointer-events-none disabled:opacity-60";
+  "group relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-[family-name:var(--font-display)] font-medium transition-all duration-200 disabled:pointer-events-none disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
   primary:
     "text-white bg-primary shadow-[0_1px_2px_var(--shadow-soft),0_6px_16px_-8px_color-mix(in_oklab,var(--brand-primary)_70%,transparent)] hover:bg-[color-mix(in_oklab,var(--brand-primary)_88%,black)] hover:shadow-[0_1px_2px_var(--shadow-soft),0_10px_24px_-10px_color-mix(in_oklab,var(--brand-primary)_80%,transparent)]",
   secondary:
-    "text-fg bg-surface border border-line hover:border-ink/25 hover:bg-raised",
+    "text-fg bg-raised border border-line hover:border-ink/20 hover:bg-ink/[0.08]",
   ghost: "text-fg/80 hover:text-fg",
+  inverse: "bg-fg text-bg hover:bg-fg/85 shadow-[0_1px_2px_var(--shadow-soft)]",
 };
 
 const sizes: Record<Size, string> = {

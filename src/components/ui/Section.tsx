@@ -47,7 +47,7 @@ export function SectionHeading({
       <As
         id={id}
         className={cn(
-          "font-semibold tracking-tight text-fg",
+          "font-medium tracking-tight text-fg",
           As === "h1" ? "text-4xl leading-[1.08] sm:text-5xl" : "text-[1.75rem] leading-[1.15] sm:text-4xl lg:text-[2.5rem]",
         )}
       >

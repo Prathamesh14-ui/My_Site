@@ -12,6 +12,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Icon, WhatsAppIcon } from "@/components/ui/Icon";
 import { ButtonLink } from "@/components/ui/Button";
 import { MockupLabel, ProjectMockup, BrowserMockup } from "@/components/mockups/Mockups";
+import { HeroVisual } from "@/components/home/HeroVisual";
 import { ChatDemo } from "@/components/features/ChatDemo";
 import { WorkflowVisualizer } from "@/components/features/WorkflowVisualizer";
 
@@ -23,38 +24,39 @@ export function TrustIntro() {
     { title: "Owned by you", body: "Documented code and workflows, deployed on accounts you control." },
   ];
   return (
-    <Section labelledBy="intro-title" className="border-y border-line bg-surface py-16 sm:py-20">
-      <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-end">
-        <Reveal>
-          <p className="eyebrow mb-4">A technology partner, not just a chatbot vendor</p>
-          <h2 id="intro-title" className="text-2xl font-medium leading-snug tracking-tight text-fg sm:text-[1.75rem]">
-            We build intelligent AI agents, automate business operations and develop modern websites —{" "}
-            <span className="text-muted">so your team spends less time on repetitive work and more time growing the business.</span>
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <ul className="grid gap-5 sm:grid-cols-3 lg:grid-cols-1">
-            {principles.map((p) => (
-              <li key={p.title} className="flex gap-4">
-                <span className="mt-1 grid size-6 shrink-0 place-items-center rounded-full bg-primary/15 text-primary-bright">
-                  <Check className="size-3.5" aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="font-medium text-fg">{p.title}</p>
-                  <p className="mt-1 text-sm text-muted">{p.body}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+    <Section labelledBy="intro-title" className="border-y border-line bg-surface">
+      <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
+        <div>
+          <Reveal>
+            <p className="eyebrow mb-4">A technology partner, not just a chatbot vendor</p>
+            <h2 id="intro-title" className="text-2xl leading-snug text-fg sm:text-[1.9rem]">
+              We build intelligent AI agents, automate business operations and develop modern websites —{" "}
+              <span className="text-muted">so your team spends less time on repetitive work and more time growing the business.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ul className="mt-10 divide-y divide-line border-y border-line">
+              {principles.map((p, i) => (
+                <li key={p.title} className="flex gap-5 py-5">
+                  <span className="label tabular-nums pt-1 text-primary-bright">0{i + 1}</span>
+                  <div>
+                    <p className="font-[family-name:var(--font-display)] font-medium text-fg">{p.title}</p>
+                    <p className="mt-1 text-sm text-muted">{p.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+        <Reveal delay={0.12} className="mx-auto w-full max-w-[560px]">
+          <HeroVisual />
         </Reveal>
       </div>
-      <Reveal delay={0.15} className="mt-12">
-        <p className="mb-4 text-xs uppercase tracking-[0.18em] text-muted">Built for</p>
-        <ul className="flex flex-wrap gap-2.5">
+      <Reveal delay={0.15} className="mt-14 flex flex-col gap-3 border-t border-line pt-8 sm:flex-row sm:items-baseline sm:gap-8">
+        <p className="label shrink-0 text-muted">Built for</p>
+        <ul className="flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem] text-fg/85">
           {industries.map((i) => (
-            <li key={i}>
-              <Badge className="px-3.5 py-1.5 text-[13px]">{i}</Badge>
-            </li>
+            <li key={i}>{i}</li>
           ))}
         </ul>
       </Reveal>

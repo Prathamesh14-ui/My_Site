@@ -25,6 +25,7 @@
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-poppins), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 
   --animate-flow: flow-dash 1.2s linear infinite;
   --animate-pulse-soft: pulse-soft 3s ease-in-out infinite;
@@ -73,7 +74,9 @@
   h3,
   h4 {
     text-wrap: balance;
-    letter-spacing: -0.02em;
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.025em;
   }
   p {
     text-wrap: pretty;
@@ -98,6 +101,33 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  /* Headings are a single colour: accent words keep their markup but not a colour */
+  .accent-serif.text-gradient {
+    background: none;
+    color: inherit;
+    -webkit-text-fill-color: currentColor;
+  }
+
+  /* Soft 3D sphere used as the only hero decoration */
+  .sphere {
+    border-radius: 9999px;
+    background: radial-gradient(
+      circle at 32% 30%,
+      color-mix(in oklab, var(--brand-primary-bright) 80%, white) 0%,
+      var(--brand-primary) 22%,
+      color-mix(in oklab, var(--brand-primary) 55%, var(--brand-secondary)) 45%,
+      color-mix(in oklab, var(--brand-secondary) 30%, var(--brand-bg)) 72%,
+      var(--brand-bg) 100%
+    );
+    box-shadow:
+      inset -40px -60px 120px color-mix(in oklab, var(--brand-bg) 70%, transparent),
+      0 0 120px -20px color-mix(in oklab, var(--brand-primary) 35%, transparent);
+    opacity: 0.9;
+  }
+  :root[data-theme="light"] .sphere {
+    opacity: 0.55;
   }
 
   /* Flat, business-style card */

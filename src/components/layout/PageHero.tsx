@@ -21,8 +21,8 @@ export function PageHero({
 }) {
   const all = [{ name: "Home", path: "/" }, ...crumbs];
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,color-mix(in_oklab,var(--brand-primary)_6%,var(--brand-bg)),var(--brand-bg))] pb-12 pt-28 sm:pb-16 sm:pt-32">
-      <div aria-hidden="true" className="glow-primary pointer-events-none absolute -top-56 right-0 h-[420px] w-[620px] opacity-70 blur-3xl" />
+    <section className="relative overflow-hidden pb-12 pt-32 sm:pb-16 sm:pt-40">
+      <div aria-hidden="true" className="sphere pointer-events-none absolute -right-40 -top-56 size-[380px] opacity-70 sm:-right-24 sm:size-[480px]" />
       <Container className="relative">
         <nav aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
@@ -40,7 +40,7 @@ export function PageHero({
         </nav>
         <Reveal className="mt-6 max-w-3xl">
           {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
-          <h1 className="text-[2.25rem] font-semibold leading-[1.1] tracking-[-0.025em] text-fg sm:text-5xl lg:text-[3.25rem]">{title}</h1>
+          <h1 className="text-[2.35rem] font-medium leading-[1.08] tracking-[-0.03em] text-fg sm:text-5xl lg:text-[3.5rem]">{title}</h1>
           {description && <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">{description}</p>}
         </Reveal>
         {children && <Reveal delay={0.1} className="mt-8">{children}</Reveal>}

@@ -58,15 +58,13 @@ export function Header() {
       <div
         className={cn(
           "transition-all duration-300",
-          scrolled || open
-            ? "border-b border-line bg-bg/90 shadow-[0_1px_12px_-6px_var(--shadow-soft)] backdrop-blur-xl"
-            : "border-b border-line/60 bg-bg/70 backdrop-blur-md",
+          scrolled || open ? "border-b border-line bg-bg/85 backdrop-blur-xl" : "border-b border-transparent",
         )}
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 md:h-[76px] lg:px-8">
           <Logo />
 
-          <nav aria-label="Main" className="hidden h-full items-center gap-1 md:flex">
+          <nav aria-label="Main" className="hidden items-center gap-0.5 rounded-xl border border-line bg-surface/80 p-1 shadow-[0_1px_2px_var(--shadow-soft)] backdrop-blur-md md:flex">
             <ActivePath>
             {(isActive) => navigation.map((item) => (
               <Link
@@ -74,12 +72,12 @@ export function Header() {
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
-                  "relative flex h-full items-center px-3 text-sm font-medium transition-colors",
+                  "relative flex h-9 items-center rounded-lg px-3.5 font-[family-name:var(--font-display)] text-[0.84rem] transition-colors lg:px-4",
                   isActive(item.href) ? "text-fg" : "text-muted hover:text-fg",
                 )}
               >
                 {isActive(item.href) && (
-                  <motion.span layoutId="nav-underline" className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-primary" transition={{ type: "spring", bounce: 0.15, duration: 0.45 }} />
+                  <motion.span layoutId="nav-active" className="absolute inset-0 rounded-lg bg-ink/[0.08]" transition={{ type: "spring", bounce: 0.15, duration: 0.45 }} />
                 )}
                 <span className="relative">{item.label}</span>
               </Link>
@@ -89,7 +87,7 @@ export function Header() {
 
           <div className="hidden items-center gap-3 md:flex">
             <ThemeToggle compact />
-            <ButtonLink href={siteConfig.cta.primary.href} size="md" className="hidden h-10 px-4 lg:inline-flex">
+            <ButtonLink href={siteConfig.cta.primary.href} size="md" variant="inverse" className="hidden h-10 px-4 lg:inline-flex">
               {siteConfig.cta.primary.label}
             </ButtonLink>
           </div>
