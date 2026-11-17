@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { PageSkeleton } from "@/components/layout/PageSkeleton";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
@@ -14,6 +13,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { MockupLabel, ProjectMockup } from "@/components/mockups/Mockups";
 import { ContactCTA, ProjectCard } from "@/components/home/HomeSections";
+import { ScreenshotGallery } from "@/components/work/Screenshots";
 
 export async function generateStaticParams() {
   return (await getProjects()).map((p) => ({ slug: p.slug }));
@@ -70,6 +70,11 @@ async function CaseStudyPageContent({ params }: Pick<PageProps<"/work/[slug]">, 
             <dd className="mt-1 font-medium text-fg">{p.category}</dd>
           </div>
         </dl>
+        {p.liveUrl && (
+          <ButtonLink href={p.liveUrl} variant="secondary" arrow className="mt-8">
+            Visit live site
+          </ButtonLink>
+        )}
       </PageHero>
 
       {/* Visual */}
@@ -78,11 +83,7 @@ async function CaseStudyPageContent({ params }: Pick<PageProps<"/work/[slug]">, 
           <div className="relative overflow-hidden rounded-[2rem] border border-ink/[0.07] bg-[radial-gradient(70%_90%_at_50%_0%,color-mix(in_oklab,var(--brand-primary)_22%,transparent),transparent),var(--brand-surface)] px-5 py-12 sm:px-12 sm:py-16">
             <div aria-hidden="true" className="grid-bg absolute inset-0 opacity-60" />
             {p.screenshots.length > 0 ? (
-              <div className="relative grid gap-6 md:grid-cols-2">
-                {p.screenshots.map((s) => (
-                  <Image key={s.src} src={s.src} alt={s.alt} width={s.width ?? 1600} height={s.height ?? 1000} className="rounded-xl border border-ink/10" sizes="(min-width: 768px) 50vw, 100vw" />
-                ))}
-              </div>
+              <ScreenshotGallery shots={p.screenshots} url={p.liveUrl} />
             ) : (
               <div className={p.mockup === "website-travel" ? "relative mx-auto max-w-3xl" : "relative mx-auto max-w-[320px]"}>
                 <ProjectMockup kind={p.mockup} />

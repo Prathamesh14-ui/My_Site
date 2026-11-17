@@ -53,4 +53,6 @@ export interface Project {
   /** Real screenshots, if/when available. Empty → coded mockup is shown with a label. */
   screenshots: { src: string; alt: string; width?: number; height?: number }[];
   relatedService: string;
+  /** Public link to the live project (only with the client's permission). */
+  liveUrl?: string;
 }

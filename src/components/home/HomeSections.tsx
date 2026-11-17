@@ -2,7 +2,8 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ArrowUpRight, Check } from "lucide-react";
 import { siteConfig, whatsappLink } from "@/config/site";
-import Image from "next/image";
+import { BrowserFrame, PhoneFrame, isPortrait } from "@/components/work/Screenshots";
+import { cn } from "@/lib/utils";
 import { industries, processSteps, technologies, whyUs } from "@/content/general";
 import type { Project } from "@/content/types";
 import { getCategory, getProjects, getServiceCategories } from "@/lib/content";
@@ -258,19 +259,20 @@ export async function FeaturedProjects() {
 }
 
 export function ProjectCard({ project: p }: { project: Project }) {
-  const shot = p.screenshots[0];
+  // Card thumbnail: prefer a wide (desktop) screenshot, otherwise the first one.
+  const shot = p.screenshots.find((s) => !isPortrait(s)) ?? p.screenshots[0];
+  const portrait = shot ? isPortrait(shot) : false;
   return (
     <article className="card card-hover group relative flex h-full flex-col overflow-hidden">
       <div className="relative flex h-72 items-start justify-center overflow-hidden border-b border-ink/[0.06] bg-[radial-gradient(80%_80%_at_50%_0%,color-mix(in_oklab,var(--brand-primary)_18%,transparent),transparent)] px-6 pt-14">
         {shot ? (
-          <Image
-            src={shot.src}
-            alt={shot.alt}
-            width={shot.width ?? 1600}
-            height={shot.height ?? 1000}
-            sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
-            className="w-full rounded-t-xl border border-ink/10 object-cover object-top transition-transform duration-500 group-hover:-translate-y-2"
-          />
+          <div className={cn("w-full transition-transform duration-500 group-hover:-translate-y-2", portrait && "max-w-[200px]")}>
+            {portrait ? (
+              <PhoneFrame shot={shot} sizes="200px" />
+            ) : (
+              <BrowserFrame shot={shot} sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw" />
+            )}
+          </div>
         ) : (
           <>
             <div className="w-full transition-transform duration-500 group-hover:-translate-y-2">

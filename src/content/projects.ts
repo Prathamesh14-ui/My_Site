@@ -82,5 +82,6 @@ export const projects: Project[] = [
     mockup: "website-travel",
     screenshots: [],
     relatedService: "web-development",
+    liveUrl: "https://s2holidays-website.vercel.app",
   },
 ];

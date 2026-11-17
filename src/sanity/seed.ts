@@ -64,6 +64,7 @@ export function buildSeedDocuments(): SeedDoc[] {
     flow: p.flow ?? [],
     relatedService: p.relatedService,
     mockup: p.mockup,
+    ...(p.liveUrl ? { liveUrl: p.liveUrl } : {}),
   }));
 
   const faqDocs: SeedDoc[] = faqs.map((f, i) => ({

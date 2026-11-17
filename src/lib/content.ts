@@ -104,7 +104,7 @@ export async function getServiceOptions(): Promise<string[]> {
 
 const PROJECTS_QUERY = defineQuery(`*[_type == "project" && defined(slug.current)] | order(coalesce(order, 999) asc, title asc){
   "slug": slug.current, title, clientName, showClientName, category, industry, summary, challenge, approach,
-  features[]{title, body}, stack, flow, mockup, relatedService,
+  features[]{title, body}, stack, flow, mockup, relatedService, liveUrl,
   "screenshots": screenshots[defined(asset)]{ "src": asset->url, alt, "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height }
 }`);
 
@@ -131,6 +131,7 @@ function normalizeProject(p: RawProject): Project {
       .filter((s) => s.src)
       .map((s) => ({ src: str(s.src), alt: str(s.alt, str(p.title)), width: s.width ?? 1600, height: s.height ?? 1000 })),
     relatedService: str(p.relatedService, "web-development"),
+    liveUrl: /^https:\/\//.test(str(p.liveUrl)) ? str(p.liveUrl) : undefined,
   };
 }
 

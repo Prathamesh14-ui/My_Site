@@ -39,6 +39,14 @@ export const project = defineType({
       description: "Only turn on if the client has given permission. Otherwise the site shows “Confidential”.",
       initialValue: false,
     }),
+    defineField({
+      name: "liveUrl",
+      title: "Live website link",
+      type: "url",
+      group: "main",
+      description: "Optional. Shows a “Visit live site” button. Only add with the client’s permission.",
+      validation: (r) => r.uri({ scheme: ["https"] }),
+    }),
     defineField({ name: "summary", type: "text", rows: 3, group: "main", validation: (r) => r.required().max(320) }),
     defineField({ name: "challenge", type: "text", rows: 4, group: "story", validation: (r) => r.required() }),
     defineField({ name: "approach", type: "text", rows: 5, group: "story", validation: (r) => r.required() }),
@@ -82,7 +90,7 @@ export const project = defineType({
       title: "Real screenshots",
       type: "array",
       group: "media",
-      description: "Upload real product screenshots. When present they replace the illustrative mockup. Hide confidential data first.",
+      description: "Upload real screenshots (desktop pages and/or phone screenshots such as chats). They replace the illustrative mockup: wide images show in a browser frame, tall ones in phone frames. Hide personal or confidential data first.",
       of: [
         defineArrayMember({
           type: "image",
