@@ -9,8 +9,9 @@ export const contentType = "image/png";
 
 export default async function OpengraphImage() {
   const c = siteConfig.colors;
-  const logo = siteConfig.logo.imageSrc
-    ? `data:image/svg+xml;base64,${(await readFile(join(process.cwd(), "public", siteConfig.logo.imageSrc))).toString("base64")}`
+  // The preview card is dark, so use the dark-theme logo.
+  const logo = siteConfig.logo.images
+    ? `data:image/svg+xml;base64,${(await readFile(join(process.cwd(), "public", siteConfig.logo.images.dark))).toString("base64")}`
     : null;
   return new ImageResponse(
     (

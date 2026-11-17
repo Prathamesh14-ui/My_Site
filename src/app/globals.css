@@ -124,6 +124,12 @@
     border: 1px solid color-mix(in oklab, var(--brand-ink) 8%, transparent);
   }
 
+  /* Theme-specific assets (e.g. the logo): show only the one for the active theme */
+  :root[data-theme="light"] .theme-dark-only,
+  :root:not([data-theme="light"]) .theme-light-only {
+    display: none;
+  }
+
   /* Dark illustrations inside a light page: solid, so the page doesn't show through */
   :root[data-theme="light"] [data-theme="dark"].glass {
     background: color-mix(in oklab, var(--brand-surface) 97%, black);

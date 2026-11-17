@@ -24,7 +24,7 @@ Before launch, replace the values marked `PLACEHOLDER`:
 
 - `contact.email`, `contact.whatsapp.number` / `display`
 - `social.*` (empty values are hidden)
-- `src/app/icon.svg` (favicon) — and optionally `logo.imageSrc` for a real logo
+- Logo: `public/logo-dark.svg` and `public/logo-light.svg` (set in `logo.images`), favicon `src/app/icon.svg`, phone icon `src/app/apple-icon.png`
 - `src/app/privacy/page.tsx` — have the privacy notice reviewed for your jurisdiction
 
 ## Content

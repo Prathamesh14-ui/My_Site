@@ -4,8 +4,14 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export function LogoMark({ className }: { className?: string }) {
-  if (siteConfig.logo.imageSrc) {
-    return <Image src={siteConfig.logo.imageSrc} alt="" width={36} height={36} unoptimized priority className={cn("size-9 shrink-0", className)} />;
+  const images = siteConfig.logo.images;
+  if (images) {
+    return (
+      <>
+        <Image src={images.dark} alt="" width={36} height={36} unoptimized priority className={cn("theme-dark-only size-9 shrink-0", className)} />
+        <Image src={images.light} alt="" width={36} height={36} unoptimized priority className={cn("theme-light-only size-9 shrink-0", className)} />
+      </>
+    );
   }
   return (
     <span

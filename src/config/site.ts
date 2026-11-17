@@ -13,10 +13,13 @@ export const siteConfig = {
   name: "PS Automation Studio",
   /** Short form used in tight spaces (mobile header, OG image). */
   shortName: "PS Automation",
-  /** Logo: monogram letters for the built-in mark, or point `imageSrc` at /public/logo.svg */
+  /**
+   * Logo files in /public — one per theme (the header/footer swap automatically).
+   * Set `images` to null to fall back to the built-in monogram badge.
+   */
   logo: {
     monogram: "PS",
-    imageSrc: "/logo-mark.svg" as string | null,
+    images: { dark: "/logo-dark.svg", light: "/logo-light.svg" } as { dark: string; light: string } | null,
   },
   tagline: "Intelligent AI. Smarter Automation. Digital Growth.",
   positioning:
