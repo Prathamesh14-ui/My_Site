@@ -139,14 +139,19 @@ async function CaseStudyPageContent({ params }: Pick<PageProps<"/work/[slug]">, 
       {p.flow && (
         <Section labelledBy="flow-heading" className="border-y border-ink/[0.05] bg-surface/30">
           <SectionHeading id="flow-heading" eyebrow="How it works" title="The flow, step by step" />
-          <ol className="mt-12 flex flex-col gap-3 lg:flex-row lg:items-stretch">
+          <ol className="mt-12 flex flex-col gap-3 lg:flex-row lg:items-stretch lg:gap-8">
             {p.flow.map((step, i) => (
-              <li key={step} className="flex flex-col items-center gap-3 lg:flex-1 lg:flex-row">
+              <li key={step} className="relative flex flex-col items-center gap-3 lg:flex-1 lg:basis-0">
                 <Reveal delay={i * 0.05} className="w-full rounded-2xl border border-ink/[0.08] bg-bg/70 p-4 lg:h-full">
                   <span className="font-mono text-xs text-primary-bright">{String(i + 1).padStart(2, "0")}</span>
                   <p className="mt-2 text-sm font-medium leading-snug text-fg">{step}</p>
                 </Reveal>
-                {i < p.flow!.length - 1 && <ArrowRight className="size-4 shrink-0 rotate-90 text-muted lg:rotate-0" aria-hidden="true" />}
+                {i < p.flow!.length - 1 && (
+                  <ArrowRight
+                    className="size-4 shrink-0 rotate-90 text-muted lg:absolute lg:-right-6 lg:top-1/2 lg:-translate-y-1/2 lg:rotate-0"
+                    aria-hidden="true"
+                  />
+                )}
               </li>
             ))}
           </ol>
