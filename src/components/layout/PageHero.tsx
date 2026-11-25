@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ChevronRight } from "lucide-react";
 import { Container } from "@/components/ui/Section";
-import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/seo";
 
@@ -38,12 +37,12 @@ export function PageHero({
             ))}
           </ol>
         </nav>
-        <Reveal className="mt-6 max-w-3xl">
+        <div className="mt-6 max-w-3xl">
           {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
           <h1 className="text-[2.35rem] font-medium leading-[1.08] tracking-[-0.03em] text-fg sm:text-5xl lg:text-[3.5rem]">{title}</h1>
           {description && <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">{description}</p>}
-        </Reveal>
-        {children && <Reveal delay={0.1} className="mt-8">{children}</Reveal>}
+        </div>
+        {children && <div className="mt-8">{children}</div>}
       </Container>
       <JsonLd data={breadcrumbJsonLd(all)} />
     </section>

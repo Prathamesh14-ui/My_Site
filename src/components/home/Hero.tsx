@@ -1,7 +1,6 @@
 import { siteConfig } from "@/config/site";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
-import { Reveal } from "@/components/ui/Reveal";
 
 export function Hero() {
   return (
@@ -14,10 +13,10 @@ export function Hero() {
 
       <Container className="relative">
         <div className="max-w-4xl">
-          <Reveal>
+          <div>
             <p className="text-sm text-muted sm:text-base">AI agents · Automation · Web — one team</p>
-          </Reveal>
-          <Reveal delay={0.04}>
+          </div>
+          <div>
             <h1
               id="hero-title"
               className="mt-5 text-[2.6rem] font-medium leading-[1.05] tracking-[-0.035em] text-fg sm:text-6xl lg:text-[4.75rem] xl:text-[5.25rem]"
@@ -28,13 +27,13 @@ export function Hero() {
               </span>
               <span className="block">Digital Growth.</span>
             </h1>
-          </Reveal>
-          <Reveal delay={0.08}>
+          </div>
+          <div>
             <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
               We help businesses work smarter through custom AI agents, intelligent automation systems and high-performance websites.
             </p>
-          </Reveal>
-          <Reveal delay={0.14}>
+          </div>
+          <div>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href={siteConfig.cta.primary.href} size="lg" arrow>
                 {siteConfig.cta.primary.label}
@@ -43,8 +42,8 @@ export function Hero() {
                 {siteConfig.cta.secondary.label}
               </ButtonLink>
             </div>
-          </Reveal>
-          <Reveal delay={0.2}>
+          </div>
+          <div>
             <ul className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted">
               {["Custom AI agents", "WhatsApp chatbots", "Workflow automation", "Modern websites"].map((t, i) => (
                 <li key={t} className="flex items-center gap-6">
@@ -53,7 +52,7 @@ export function Hero() {
                 </li>
               ))}
             </ul>
-          </Reveal>
+          </div>
         </div>
       </Container>
     </section>
