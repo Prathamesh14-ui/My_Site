@@ -50,6 +50,7 @@ export async function POST(req: Request) {
     );
   }
 
+  if (result.duplicate) return Response.json({ ok: true, duplicate: true }, { headers: noStore });
   if (result.errors.length) console.warn("[contact] delivered via", result.channels, "but some channels failed:", result.errors);
   return Response.json({ ok: true }, { headers: noStore });
 }

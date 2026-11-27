@@ -1,5 +1,5 @@
 import "server-only";
-import { randomUUID } from "node:crypto";
+import { createHash } from "node:crypto";
 import { absoluteUrl, siteConfig } from "@/config/site";
 import { sanityWriteClient } from "@/sanity/client";
 import type { Enquiry } from "./enquiry";
@@ -15,7 +15,7 @@ import type { Enquiry } from "./enquiry";
  */
 
 export type DeliveryResult =
-  | { ok: true; channels: string[]; errors: string[] }
+  | { ok: true; channels: string[]; errors: string[]; duplicate?: boolean }
   | { ok: false; reason: "not_configured" | "failed"; errors: string[] };
 
 const TIMEOUT_MS = 10_000;
@@ -92,7 +92,7 @@ async function sendWebhook(e: Enquiry, meta: Meta) {
 
 async function saveToSanity(e: Enquiry, meta: Meta, id: string) {
   if (!sanityWriteClient) return null;
-  await sanityWriteClient.create({
+  await sanityWriteClient.createIfNotExists({
     _id: id,
     _type: "enquiry",
     status: "new",
@@ -117,7 +117,20 @@ export function deliveryConfigured() {
 
 export async function deliverEnquiry(e: Enquiry, source: string): Promise<DeliveryResult> {
   if (!deliveryConfigured()) return { ok: false, reason: "not_configured", errors: [] };
-  const id = `enquiry-${randomUUID()}`;
+  // Same email + same message on the same day = the same enquiry (double submit, refresh, back button).
+  // A deterministic id lets Sanity reject the copy atomically, and we skip email/webhook for it too.
+  const day = new Date().toISOString().slice(0, 10);
+  const fingerprint = [e.email.toLowerCase(), e.message.replace(/\s+/g, " ").toLowerCase(), day].join("|");
+  const id = `enquiry-${createHash("sha256").update(fingerprint).digest("hex").slice(0, 32)}`;
+  if (sanityWriteClient) {
+    try {
+      if (await sanityWriteClient.fetch<string | null>(`*[_id == $id][0]._id`, { id })) {
+        return { ok: true, channels: [], errors: [], duplicate: true };
+      }
+    } catch {
+      // If the lookup fails, fall through: createIfNotExists still prevents a second Sanity copy.
+    }
+  }
   const meta: Meta = {
     submittedAt: new Date().toISOString(),
     source,

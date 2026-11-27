@@ -137,7 +137,7 @@ export function ContactForm({ serviceOptions }: { serviceOptions: string[] }) {
         <Field label="Email" name="email" required error={errors.email}>
           <input id="email" name="email" type="email" inputMode="email" autoComplete="email" value={values.email} onChange={(e) => update("email", e.target.value)} className="input" {...aria("email", errors.email)} />
         </Field>
-        <Field label="WhatsApp number" name="whatsapp" error={errors.whatsapp} hint="Include country code, e.g. +91">
+        <Field label="WhatsApp number" name="whatsapp" required error={errors.whatsapp} hint="Include country code, e.g. +91">
           <input id="whatsapp" name="whatsapp" type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 98XXX XXXXX" value={values.whatsapp} onChange={(e) => update("whatsapp", e.target.value)} className="input" {...aria("whatsapp", errors.whatsapp, true)} />
         </Field>
         <Field label="Service interested in" name="service" required error={errors.service}>
