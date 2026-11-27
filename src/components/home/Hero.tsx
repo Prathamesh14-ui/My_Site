@@ -1,58 +1,62 @@
 import { siteConfig } from "@/config/site";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
+import { BrowserFrame, isPortrait } from "@/components/work/Screenshots";
+import { industries } from "@/content/general";
+import { getProjects } from "@/lib/content";
 
-export function Hero() {
+export async function Hero() {
+  // Real client work as the hero visual: the first project with a live site and a desktop screenshot.
+  const projects = await getProjects();
+  const featured = projects.find((p) => p.liveUrl && p.screenshots.some((s) => !isPortrait(s)));
+  const shot = featured?.screenshots.find((s) => !isPortrait(s));
+
   return (
-    <section aria-labelledby="hero-title" className="relative overflow-hidden pb-20 pt-32 sm:pb-24 sm:pt-40 lg:min-h-[86vh] lg:pb-28 lg:pt-44">
-      {/* Single soft sphere — the only decoration */}
-      <div
-        aria-hidden="true"
-        className="sphere pointer-events-none absolute -right-40 -top-40 size-[420px] sm:-right-32 sm:-top-48 sm:size-[560px] lg:-right-24 lg:-top-56 lg:size-[680px]"
-      />
-
+    <section aria-labelledby="hero-title" className="relative overflow-hidden border-b border-line pb-16 pt-32 sm:pb-20 sm:pt-36 lg:pb-24 lg:pt-40">
       <Container className="relative">
-        <div className="max-w-4xl">
+        <div className="grid gap-14 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-12">
           <div>
-            <p className="text-sm text-muted sm:text-base">AI agents · Automation · Web — one team</p>
-          </div>
-          <div>
+            <p className="text-sm font-medium text-primary-bright">AI automation &amp; web development · Mumbai</p>
             <h1
               id="hero-title"
-              className="mt-5 text-[2.6rem] font-medium leading-[1.05] tracking-[-0.035em] text-fg sm:text-6xl lg:text-[4.75rem] xl:text-[5.25rem]"
+              className="mt-5 text-[2.3rem] font-medium leading-[1.08] tracking-[-0.03em] text-fg sm:text-5xl lg:text-[3.6rem]"
             >
-              <span className="block">Intelligent AI.</span>
-              <span className="block">
-                <span className="accent-serif text-gradient">Smarter</span> Automation.
-              </span>
-              <span className="block">Digital Growth.</span>
+              We automate enquiries, bookings and follow-ups for growing businesses.
             </h1>
-          </div>
-          <div>
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-              We help businesses work smarter through custom AI agents, intelligent automation systems and high-performance websites.
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+              WhatsApp chatbots, AI assistants and fast websites for clinics, travel agencies and service businesses — planned, built and handed over by one team.
             </p>
-          </div>
-          <div>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href={siteConfig.cta.primary.href} size="lg" arrow>
                 {siteConfig.cta.primary.label}
               </ButtonLink>
-              <ButtonLink href={siteConfig.cta.secondary.href} size="lg" variant="secondary">
-                {siteConfig.cta.secondary.label}
+              <ButtonLink href="/work" size="lg" variant="secondary">
+                See our work
               </ButtonLink>
             </div>
+            <div className="mt-12 border-t border-line pt-6">
+              <p className="label text-muted">Built for</p>
+              <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-fg/80">
+                {industries.map((i) => (
+                  <li key={i}>{i}</li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div>
-            <ul className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted">
-              {["Custom AI agents", "WhatsApp chatbots", "Workflow automation", "Modern websites"].map((t, i) => (
-                <li key={t} className="flex items-center gap-6">
-                  {i > 0 && <span className="hidden h-4 w-px bg-line sm:block" aria-hidden="true" />}
-                  <span>{t}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+
+          {featured && shot && (
+            <figure className="relative">
+              <BrowserFrame shot={shot} url={featured.liveUrl} sizes="(min-width: 1024px) 600px, 100vw" />
+              <figcaption className="mt-4 flex items-center justify-between gap-4 text-sm text-muted">
+                <span>
+                  <span className="font-medium text-fg">{featured.title}</span> — live client project
+                </span>
+                <a href={`/work/${featured.slug}`} className="shrink-0 text-primary-bright underline underline-offset-4 hover:decoration-2">
+                  Case study
+                </a>
+              </figcaption>
+            </figure>
+          )}
         </div>
       </Container>
     </section>

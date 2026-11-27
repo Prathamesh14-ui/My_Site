@@ -95,7 +95,7 @@ export const siteConfig = {
     },
   },
   /** Theme shown to first-time visitors: "dark", "light" or "system". */
-  defaultTheme: "dark" as "dark" | "light" | "system",
+  defaultTheme: "light" as "dark" | "light" | "system",
 } as const;
 
 export type SiteConfig = typeof siteConfig;
