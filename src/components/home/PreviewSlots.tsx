@@ -25,7 +25,9 @@ export function FounderSlot() {
           </span>
         </div>
         <div>
-          <PlaceholderTag />
+          <div>
+            <PlaceholderTag />
+          </div>
           <p className="eyebrow mt-5 mb-3">Who you&apos;ll work with</p>
           <h2 id="founder-title" className="text-3xl leading-tight text-fg sm:text-4xl">
             [Your name], Founder
@@ -45,7 +47,9 @@ export function TestimonialSlot() {
     <Section labelledBy="testimonial-title" className="pt-0 sm:pt-0 lg:pt-0">
       <h2 id="testimonial-title" className="sr-only">Client feedback</h2>
       <figure className="mx-auto max-w-3xl rounded-2xl border border-dashed border-ink/15 p-8 text-center sm:p-12">
-        <PlaceholderTag />
+        <div>
+          <PlaceholderTag />
+        </div>
         <Quote className="mx-auto mt-6 size-8 text-primary-bright" aria-hidden="true" />
         <blockquote className="mt-5 text-xl leading-relaxed text-fg sm:text-2xl">
           [A short, real quote from your S2 Holidays client about working with you.]
