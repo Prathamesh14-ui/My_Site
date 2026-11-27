@@ -88,7 +88,7 @@ export function SubServiceGrid({ category }: { category: ServiceCategory }) {
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">{s.summary}</p>
             <div className="mt-5 space-y-2 border-t border-ink/[0.06] pt-5 text-[13px] leading-relaxed">
-              <p><span className="text-danger/80">Problem · </span><span className="text-muted">{s.problem}</span></p>
+              <p><span className="text-danger">Problem · </span><span className="text-muted">{s.problem}</span></p>
               <p><span className="text-primary-bright">Solution · </span><span className="text-fg/80">{s.solution}</span></p>
             </div>
             <span className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-medium text-primary-bright">

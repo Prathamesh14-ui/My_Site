@@ -91,7 +91,7 @@ export function CostEstimator() {
                       <span className="block font-medium text-fg">{t.label}</span>
                       <span className="mt-0.5 block text-xs leading-relaxed text-muted">{t.description}</span>
                     </span>
-                    <span className={cn("mt-1 grid size-5 shrink-0 place-items-center rounded-md border", on ? "border-primary bg-primary text-white" : "border-ink/20")} aria-hidden="true">
+                    <span className={cn("mt-1 grid size-5 shrink-0 place-items-center rounded-md border", on ? "border-primary bg-primary-solid text-white" : "border-ink/20")} aria-hidden="true">
                       {on && <Check className="size-3.5" />}
                     </span>
                   </button>

@@ -34,7 +34,7 @@ export default function PrivacyPage() {
             <h2 className="mb-3 text-xl font-semibold text-fg">Your choices</h2>
             <p>
               You can ask us to access, correct or delete your information at any time by emailing{" "}
-              <a href={`mailto:${siteConfig.contact.email}`} className="text-primary-bright hover:underline">{siteConfig.contact.email}</a>.
+              <a href={`mailto:${siteConfig.contact.email}`} className="text-primary-bright underline underline-offset-4 hover:decoration-2">{siteConfig.contact.email}</a>.
             </p>
           </div>
         </div>

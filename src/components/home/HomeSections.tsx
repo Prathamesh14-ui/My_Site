@@ -416,7 +416,7 @@ export function FAQ({ items }: { items: { q: string; a: string }[] }) {
           description={
             <>
               Can&apos;t find what you&apos;re looking for?{" "}
-              <Link href="/contact" className="text-primary-bright underline-offset-4 hover:underline">
+              <Link href="/contact" className="text-primary-bright underline underline-offset-4 hover:decoration-2">
                 Ask us directly
               </Link>
               .
@@ -476,7 +476,7 @@ export function ContactCTA({
               </div>
               <p className="mt-6 text-sm text-muted">
                 Not sure about scope?{" "}
-                <Link href="/estimate" className="text-primary-bright underline-offset-4 hover:underline">
+                <Link href="/estimate" className="text-primary-bright underline underline-offset-4 hover:decoration-2">
                   Try the project estimator
                 </Link>
               </p>

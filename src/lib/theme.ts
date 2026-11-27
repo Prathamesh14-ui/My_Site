@@ -20,7 +20,7 @@ const palette = (c: Palette) => `
   --brand-secondary:${c.secondary};--brand-secondary-bright:${c.secondaryBright};`;
 
 const darkTones = `--brand-ink:#ffffff;--tone-success:#6ee7b7;--tone-warning:#fde68a;--tone-danger:#fca5a5;color-scheme:dark;`;
-const lightTones = `--brand-ink:#0b0c14;--tone-success:#047857;--tone-warning:#b45309;--tone-danger:#dc2626;color-scheme:light;`;
+const lightTones = `--brand-ink:#0b0c14;--tone-success:#047857;--tone-warning:#92400e;--tone-danger:#b91c1c;color-scheme:light;`;
 
 export function themeCss(): string {
   const { light, ...dark } = siteConfig.colors;

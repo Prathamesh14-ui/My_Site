@@ -34,6 +34,7 @@ export default async function WorkPage() {
             To protect client confidentiality, some projects are shown without client names. Where real screenshots aren&apos;t available, visuals are illustrative mockups built to explain the solution and are labelled as such.
           </p>
         </Reveal>
+        <h2 className="sr-only">Case studies</h2>
         <div className="grid gap-6 md:grid-cols-2 md:[&>*:last-child:nth-child(odd)]:col-span-2">
           {projects.map((p, i) => (
             <Reveal key={p.slug} delay={(i % 2) * 0.06}>

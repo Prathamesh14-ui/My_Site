@@ -102,7 +102,7 @@ export function WorkflowVisualizer() {
           <button
             type="button"
             onClick={running ? () => setPlaying(false) : play}
-            className="inline-flex h-10 items-center gap-2 rounded-full bg-primary px-4 text-sm font-medium text-white"
+            className="inline-flex h-10 items-center gap-2 rounded-full bg-primary-solid px-4 text-sm font-medium text-white"
           >
             {running ? <Pause className="size-4" aria-hidden="true" /> : <Play className="size-4" aria-hidden="true" />}
             {running ? "Pause" : finished ? "Replay" : active >= 0 ? "Resume" : "Run workflow"}

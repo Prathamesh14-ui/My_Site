@@ -184,7 +184,7 @@ export function ContactForm({ serviceOptions }: { serviceOptions: string[] }) {
           />
           <span>
             I agree that {siteConfig.name} may use these details to respond to my enquiry. See our{" "}
-            <Link href="/privacy" className="text-primary-bright underline-offset-4 hover:underline">privacy notice</Link>.
+            <Link href="/privacy" className="text-primary-bright underline underline-offset-4 hover:decoration-2">privacy notice</Link>.
           </span>
         </label>
         {errors.consent && <p id="consent-error" className="mt-2 text-sm text-danger">{errors.consent}</p>}

@@ -175,7 +175,7 @@ export function ChatDemo({ className }: { className?: string }) {
             type="submit"
             disabled={pending || !input.trim()}
             aria-label="Send message"
-            className="grid size-11 shrink-0 place-items-center rounded-full bg-primary text-white transition-opacity disabled:opacity-40"
+            className="grid size-11 shrink-0 place-items-center rounded-full bg-primary-solid text-white transition-opacity disabled:opacity-40"
           >
             <Send className="size-4" aria-hidden="true" />
           </button>

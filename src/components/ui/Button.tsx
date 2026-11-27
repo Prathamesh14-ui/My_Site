@@ -11,7 +11,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "text-white bg-primary shadow-[0_1px_2px_var(--shadow-soft),0_6px_16px_-8px_color-mix(in_oklab,var(--brand-primary)_70%,transparent)] hover:bg-[color-mix(in_oklab,var(--brand-primary)_88%,black)] hover:shadow-[0_1px_2px_var(--shadow-soft),0_10px_24px_-10px_color-mix(in_oklab,var(--brand-primary)_80%,transparent)]",
+    "text-white bg-primary-solid shadow-[0_1px_2px_var(--shadow-soft),0_6px_16px_-8px_color-mix(in_oklab,var(--brand-primary)_70%,transparent)] hover:bg-[color-mix(in_oklab,var(--color-primary-solid)_88%,black)] hover:shadow-[0_1px_2px_var(--shadow-soft),0_10px_24px_-10px_color-mix(in_oklab,var(--brand-primary)_80%,transparent)]",
   secondary:
     "text-fg bg-raised border border-line hover:border-ink/20 hover:bg-ink/[0.08]",
   ghost: "text-fg/80 hover:text-fg",
